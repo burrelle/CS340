@@ -73,3 +73,5 @@ CREATE TABLE specialTeamsStats (
   punts int(11),
   avergePuntYards int(11)
 );
+
+-- TODO Add to myPHPAdmin and run to create the tables. 
