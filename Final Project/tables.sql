@@ -51,7 +51,7 @@ CREATE TABLE offsensiveStats (
   rushingAttempts int(11),
   receptions int(11),
   targets int(11),
-  receivingYards(11)
+  receivingYards int(11)
 );
 
 -- Create a table for the different defensive stats.
@@ -74,4 +74,4 @@ CREATE TABLE specialTeamsStats (
   avergePuntYards int(11)
 );
 
--- TODO Add to myPHPAdmin and run to create the tables. 
+-- TODO Add to myPHPAdmin and run to create the tables.
