@@ -1,4 +1,4 @@
 -- Create the postion group tables
--- INSERT INTO `postionGroup`(`positionGroup`) VALUES ([value-1])
-INSERT INTO `postionGroup`(`positionGroup`) VALUES
+-- INSERT INTO `positionGroup`(`positionGroup`) VALUES ([value-1])
+INSERT INTO `positionGroup`(`positionGroup`) VALUES
 ('Offense'),('Defense'),('Special Teams');
