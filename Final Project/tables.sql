@@ -30,7 +30,7 @@ CREATE TABLE teams (
 -- Creating a table for the different position groups (Offense, Defense, and Special Teams)
 CREATE TABLE positionGroup (
   positionGroupID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  postionGroup varchar(255) NOT NULL
+  positionGroup varchar(255) NOT NULL
 );
 
 -- Creating a table for the different positions
