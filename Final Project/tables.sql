@@ -3,7 +3,7 @@
 DROP TABLE IF EXISTS `player`;
 DROP TABLE IF EXISTS `teams`;
 DROP TABLE IF EXISTS `positionGroup`;
-DROP TABLE IF EXISTS `position`;
+DROP TABLE IF EXISTS `positions`;
 DROP TABLE IF EXISTS `offsensiveStats`;
 DROP TABLE IF EXISTS `defensiveStats`;
 DROP TABLE IF EXISTS `specialTeamsStats`;
@@ -11,12 +11,14 @@ DROP TABLE IF EXISTS `specialTeamsStats`;
 
 -- Creating a table player that has a number that is the primary key.
 CREATE TABLE player(
-  pNumber int(11) PRIMARY KEY,
+  playerID int(11) PRIMARY KEY AUTO_INCREMENT,
+  pNumber int(11) NOT NULL,
   firstName varchar(255) NOT NULL,
   lastName varchar(255) NOT NULL,
   age int(11) NOT NULL,
   team int(11) references teams(teamID),
-  positionGroup int(11) references positionGroup(positionGroupID)
+  positionGroup int(11) references positionGroup(positionGroupID),
+  positon int(11) references positions(positionID)
 );
 
 -- Creating a table teams that is able to be referenced by the players table.
@@ -34,7 +36,7 @@ CREATE TABLE positionGroup (
 );
 
 -- Creating a table for the different positions
-CREATE TABLE position (
+CREATE TABLE positions (
   positionID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   positionGroup int(11) references positionGroup(positionGroupID),
   position varchar(255) NOT NULL
