@@ -1,0 +1,40 @@
+<select id="positionChoice">
+  <option value='QB'>Quarterback</option>
+  <option value="RB">Running Back</option>
+  <option value="WR">Wide Reciever</option>
+  <option value="DB">Defensive Back</option>
+  <option value="DE">Defensive End</option>
+  <option value="LB">Linebacker</option>
+  <option value="K">Kicker</option>
+  <option value="P">Punter</option>
+</select>
+
+<table id="playerTable">
+  <thead>
+    <tr>
+      <th>
+        Number
+      </th>
+      <th>
+        First Name
+      </th>
+      <th>
+        Last Name
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each results}}
+      <td>
+        {{this.pNumber}}
+      </td>
+      <td>
+        {{this.firstName}}
+      </td>
+      <td>
+        {{this.lastName}}
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
