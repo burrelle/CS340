@@ -23,6 +23,8 @@ INSERT INTO `player`(`pNumber`, `firstName`, `lastName`, `age`, `team`, `positio
 ('13', 'Mike', 'Evans', '23', (SELECT teamID FROM teams WHERE mascot = 'Buccaneers'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Offense'), (SELECT positionID FROM positions WHERE position = 'WR')),
 ('13', 'Michael', 'Thomas', '23', (SELECT teamID FROM teams WHERE mascot = 'Saints'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Offense'), (SELECT positionID FROM positions WHERE position = 'WR')),
 ('18', 'AJ', 'Green', '29', (SELECT teamID FROM teams WHERE mascot = 'Bengals'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Offense'), (SELECT positionID FROM positions WHERE position = 'WR')),
+
+-- Defense
 ('21', 'Landon', 'Collins', '24', (SELECT teamID FROM teams WHERE mascot = 'Giants'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Defense'), (SELECT positionID FROM positions WHERE position = 'DB')),
 ('20', 'Reshad', 'Jones', '29', (SELECT teamID FROM teams WHERE mascot = 'Dolphins'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Defense'), (SELECT positionID FROM positions WHERE position = 'DB')),
 ('22', 'Harrison', 'Smith', '28', (SELECT teamID FROM teams WHERE mascot = 'Vikings'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Defense'), (SELECT positionID FROM positions WHERE position = 'DB')),
@@ -46,6 +48,8 @@ INSERT INTO `player`(`pNumber`, `firstName`, `lastName`, `age`, `team`, `positio
 ('54', 'Melvin', 'Ingram', '28', (SELECT teamID FROM teams WHERE mascot = 'Chargers'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Defense'), (SELECT positionID FROM positions WHERE position = 'DE')),
 ('99', 'Muhammad', 'Wilkerson', '27', (SELECT teamID FROM teams WHERE mascot = 'Jets'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Defense'), (SELECT positionID FROM positions WHERE position = 'DE')),
 ('93', 'Calais', 'Campbell', '30', (SELECT teamID FROM teams WHERE mascot = 'Jaguars'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Defense'), (SELECT positionID FROM positions WHERE position = 'DE')),
+
+--Special Teams
 ('2', 'Matt', 'Bryant', '42', (SELECT teamID FROM teams WHERE mascot = 'Falcons'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Special Teams'), (SELECT positionID FROM positions WHERE position = 'K')),
 ('3', 'Stephen', 'Gostkowski', '33', (SELECT teamID FROM teams WHERE mascot = 'Patriots'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Special Teams'), (SELECT positionID FROM positions WHERE position = 'K')),
 ('3', 'Will', 'Lutz', '23', (SELECT teamID FROM teams WHERE mascot = 'Saints'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Special Teams'), (SELECT positionID FROM positions WHERE position = 'K')),
