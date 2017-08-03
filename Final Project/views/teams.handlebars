@@ -1,0 +1,30 @@
+<!-- Teams Table -->
+<table id="teamsTable">
+  <thead>
+    <tr>
+      <th>
+        City
+      </th>
+      <th>
+        Mascot
+      </th>
+      <th>
+        Stadium
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each results}}
+      <td>
+        {{this.city}}
+      </td>
+      <td>
+        {{this.mascot}}
+      </td>
+      <td>
+        {{this.stadium}}
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
