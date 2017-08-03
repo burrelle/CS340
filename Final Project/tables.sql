@@ -45,7 +45,7 @@ CREATE TABLE positions (
 -- Create a table for the different offensive stats.
 CREATE TABLE offsensiveStats (
   offsensiveStatsID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  playerNumber int(11) references player(pNumber),
+  playerNumber int(11) references player(playerID),
   passingAttempts int(11),
   passesCompleted int(11),
   passingYards int(11),
@@ -59,7 +59,7 @@ CREATE TABLE offsensiveStats (
 -- Create a table for the different defensive stats.
 CREATE TABLE defensiveStats (
   defensiveStatsID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  playerNumber int(11) references player(pNumber),
+  playerNumber int(11) references player(playerID),
   sacks int(11),
   tackles int(11),
   forcedFumbles int(11),
@@ -69,7 +69,7 @@ CREATE TABLE defensiveStats (
 -- Create a table for the different special teams stats
 CREATE TABLE specialTeamsStats (
   specialTeamsStatsID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  playerNumber int(11) references player(pNumber),
+  playerNumber int(11) references player(playerID),
   fieldGoalAttempts int(11),
   fieldGoalMade int(11),
   punts int(11),
