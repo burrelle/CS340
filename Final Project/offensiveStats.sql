@@ -1,13 +1,13 @@
 -- Add offensive stats for the players that are on offense.
 -- INSERT INTO `offsensiveStats`( `passingAttempts`, `passesCompleted`, `passingYards`, `rushingYards`, `rushingAttempts`, `receptions`, `targets`, `receivingYards`) VALUES
 INSERT INTO `offsensiveStats`(`playerNumber`, `passingAttempts`, `passesCompleted`, `passingYards`, `rushingYards`, `rushingAttempts`, `receptions`, `targets`, `receivingYards`) VALUES
-((SELECT playerID FROM player WHERE firstName = 'Tyrod' AND lastName = 'Taylor'), '436', '269', '3023', '580', '95'),
-((SELECT playerID FROM player WHERE firstName = 'Aaron' AND lastName = 'Rodgers'), '610', '401', '4428', '369', '67'),
-((SELECT playerID FROM player WHERE firstName = 'Jameis' AND lastName = 'Winston'), '567', '345', '4090', '165', '53'),
-((SELECT playerID FROM player WHERE firstName = 'Marcus' AND lastName = 'Mariota'), '451', '276', '3426', '349', '60'),
-((SELECT playerID FROM player WHERE firstName = 'Blake' AND lastName = 'Bortles'), '625', '368', '3905', '359', '58'),
-((SELECT playerID FROM player WHERE firstName = 'Derek' AND lastName = 'Carr'), '560', '357', '3937', '70', '39'),
-((SELECT playerID FROM player WHERE firstName = 'Andrew' AND lastName = 'Luck'), '545', '346', '4240', '341', '64'),
+((SELECT playerID FROM player WHERE firstName = 'Tyrod' AND lastName = 'Taylor'), '436', '269', '3023', '580', '95', '0', '0', '0'),
+((SELECT playerID FROM player WHERE firstName = 'Aaron' AND lastName = 'Rodgers'), '610', '401', '4428', '369', '67', '0', '0', '0'),
+((SELECT playerID FROM player WHERE firstName = 'Jameis' AND lastName = 'Winston'), '567', '345', '4090', '165', '53', '0', '0', '0'),
+((SELECT playerID FROM player WHERE firstName = 'Marcus' AND lastName = 'Mariota'), '451', '276', '3426', '349', '60', '0', '0', '0'),
+((SELECT playerID FROM player WHERE firstName = 'Blake' AND lastName = 'Bortles'), '625', '368', '3905', '359', '58', '0', '0', '0'),
+((SELECT playerID FROM player WHERE firstName = 'Derek' AND lastName = 'Carr'), '560', '357', '3937', '70', '39', '0', '0', '0'),
+((SELECT playerID FROM player WHERE firstName = 'Andrew' AND lastName = 'Luck'), '545', '346', '4240', '341', '64', '0', '0', '0'),
 ((SELECT playerID FROM player WHERE firstName = 'David' AND lastName = 'Johnson'), '0', '0', '0', '1239', '293', '80', '120', '879'),
 ((SELECT playerID FROM player WHERE firstName = 'Le\'Veon' AND lastName = 'Bell'), '0', '0', '0', '1268', '261', '75', '94', '616'),
 ((SELECT playerID FROM player WHERE firstName = 'Ezekiel' AND lastName = 'Elliott'), '0', '0', '0', '1631', '322', '32', '39', '363'),
