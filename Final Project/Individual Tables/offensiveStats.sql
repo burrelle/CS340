@@ -16,7 +16,7 @@ INSERT INTO `offsensiveStats`(`playerNumber`, `passingAttempts`, `passesComplete
 ((SELECT playerID FROM player WHERE firstName = 'Devonta' AND lastName = 'Freeman'), '0', '0', '0', '1079', '227', '54', '65', '462'),
 ((SELECT playerID FROM player WHERE firstName = 'Melvin' AND lastName = 'Gordon'), '0', '0', '0', '997', '254', '41', '57', '419'),
 ((SELECT playerID FROM player WHERE firstName = 'Antonio' AND lastName = 'Brown'), '0', '0', '0', '0', '0', '106', '154', '1284'),
-((SELECT playerID FROM player WHERE firstName = 'Odell' AND lastName = 'Beckham'), '0', '0', '0', '0', '0', '101', '169', '1367'),
+((SELECT playerID FROM player WHERE firstName = 'Odell' AND lastName = 'Beckham Jr'), '0', '0', '0', '0', '0', '101', '169', '1367'),
 ((SELECT playerID FROM player WHERE firstName = 'Julio' AND lastName = 'Jones'), '0', '0', '0', '0', '0', '83', '129', '1409'),
 ((SELECT playerID FROM player WHERE firstName = 'Jordy' AND lastName = 'Nelson'), '0', '0', '0', '0', '0', '97', '152', '1257'),
 ((SELECT playerID FROM player WHERE firstName = 'Mike' AND lastName = 'Evans'), '0', '0', '0', '0', '0', '96', '173', '1321'),

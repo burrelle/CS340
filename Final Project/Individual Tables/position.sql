@@ -1,7 +1,7 @@
 -- Adding the positions with the foriegn key from positionGroup
 -- INSERT INTO `position` (`positionGroup`, `position`) VALUES (SELECT positionGroupID from positionGroup WHERE positionGroup = '(O/D/ST)')
 
-INSERT INTO `position` (`positionGroup`, `position`) VALUES
+INSERT INTO `positions` (`positionGroup`, `position`) VALUES
 ((SELECT positionGroupID from positionGroup WHERE positionGroup = 'Offense'), 'QB'),
 ((SELECT positionGroupID from positionGroup WHERE positionGroup = 'Offense'), 'RB'),
 ((SELECT positionGroupID from positionGroup WHERE positionGroup = 'Offense'), 'WR'),

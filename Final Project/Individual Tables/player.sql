@@ -47,7 +47,7 @@ INSERT INTO `player`(`pNumber`, `firstName`, `lastName`, `age`, `team`, `positio
 ('96', 'Muhammad', 'Wilkerson', '27', (SELECT teamID FROM teams WHERE mascot = 'Jets'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Defense'), (SELECT positionID FROM positions WHERE position = 'DE')),
 ('93', 'Calais', 'Campbell', '30', (SELECT teamID FROM teams WHERE mascot = 'Jaguars'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Defense'), (SELECT positionID FROM positions WHERE position = 'DE')),
 
---Special Teams
+-- Special Teams
 ('2', 'Matt', 'Bryant', '42', (SELECT teamID FROM teams WHERE mascot = 'Falcons'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Special Teams'), (SELECT positionID FROM positions WHERE position = 'K')),
 ('3', 'Stephen', 'Gostkowski', '33', (SELECT teamID FROM teams WHERE mascot = 'Patriots'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Special Teams'), (SELECT positionID FROM positions WHERE position = 'K')),
 ('3', 'Will', 'Lutz', '23', (SELECT teamID FROM teams WHERE mascot = 'Saints'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Special Teams'), (SELECT positionID FROM positions WHERE position = 'K')),
@@ -57,4 +57,4 @@ INSERT INTO `player`(`pNumber`, `firstName`, `lastName`, `age`, `team`, `positio
 ('5', 'Dan', 'Bailey', '29', (SELECT teamID FROM teams WHERE mascot = 'Cowboys'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Special Teams'), (SELECT positionID FROM positions WHERE position = 'K')),
 ('6', 'Johnny', 'Hekker', '27', (SELECT teamID FROM teams WHERE mascot = 'Rams'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Special Teams'), (SELECT positionID FROM positions WHERE position = 'P')),
 ('5', 'Bradley', 'Pinion', '23', (SELECT teamID FROM teams WHERE mascot = '49ers'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Special Teams'), (SELECT positionID FROM positions WHERE position = 'P')),
-('9', 'Brad', 'Wing', '26', (SELECT teamID FROM teams WHERE mascot = 'Falcons'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Special Teams'), (SELECT positionID FROM positions WHERE position = 'P')),
+('9', 'Brad', 'Wing', '26', (SELECT teamID FROM teams WHERE mascot = 'Falcons'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Special Teams'), (SELECT positionID FROM positions WHERE position = 'P'));
