@@ -1,0 +1,27 @@
+<!-- Insert a team -->
+<form action="/teams-insert" method="get">
+  <fieldset>
+    <legend>
+      Add a team:
+    </legend>
+    <label>City: </label>
+    <input type="text" name="city" required />
+    <label>Mascot: </label>
+    <input type="text" name="mascot" required />
+    <label>Stadium: </label>
+    <input type="text" name="stadium" required />
+    <input type="submit" id="teamSubmit" href="/teams" />
+  </fieldset>
+</form>
+
+<!-- Insert a positionGroup -->
+<form action="/positionGroup-insert" method="get">
+  <fieldset>
+    <legend>
+      Add a Position Group
+    </legend>
+    <label>Position Group: </label>
+    <input type="text" name="positionGroup" />
+    <input type="submit" id="positionGroupSubmit" href="/positionGroup" />
+  </fieldset>
+</form>
