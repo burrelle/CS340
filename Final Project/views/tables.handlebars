@@ -1,0 +1,104 @@
+<div id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="card">
+    <div class="card-header" role="tab" id="headingOne">
+      <h5 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Teams Table
+        </a>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="card-block">
+        <table id="teamsTable">
+          <thead>
+            <tr>
+              <th>
+                City
+              </th>
+              <th>
+                Mascot
+              </th>
+              <th>
+                Stadium
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each teams}}
+              <td>
+                {{this.city}}
+              </td>
+              <td>
+                {{this.mascot}}
+              </td>
+              <td>
+                {{this.stadium}}
+              </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingTwo">
+      <h5 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Position Groups Table
+        </a>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="card-block">
+        <table id="positionGroupTable">
+          <thead>
+            <tr>
+              <th>
+                Position Group
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each positionGroup}}
+              <td>
+                {{this.positionGroup}}
+              </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" role="tab" id="headingThree">
+        <h5 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Positions
+        </a>
+      </h5>
+      </div>
+      <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="card-block">
+          <table id="positionGroupTable">
+            <thead>
+              <tr>
+                <th>
+                  Positions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each positions}}
+                <td>
+                  {{this.position}}
+                </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

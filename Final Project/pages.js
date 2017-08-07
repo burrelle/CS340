@@ -11,6 +11,52 @@ app.set('view engine', 'handlebars');
 app.set('port', 3000);
 app.use(express.static('public'));
 
+function getTeams(req,res,next){
+  mysql.pool.query('SELECT * FROM teams', function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+    req.teams = rows;
+    return next();
+  });
+}
+
+function getPositionGroups(req, res,next){
+  mysql.pool.query('SELECT * FROM positionGroup', function(err,rows, fields){
+    if(err){
+      next(err);
+      return;
+    }
+    req.positionGroup = rows;
+    return next();
+  });
+}
+
+function getPositions(req, res, next){
+  mysql.pool.query('SELECT * FROM positions', function(err, rows, fields){
+    if(err){
+      next(err);
+      return
+    }
+    req.positions = rows;
+    return next();
+  })
+}
+
+function renderTablePage(req, res){
+  res.render('tables', {
+    teams: req.teams,
+    positionGroup: req.positionGroup,
+    positions: req.positions
+  });
+}
+
+//TODO Add in all of the tables to collapsible divs
+
+app.get('/tables', getTeams, getPositionGroups, getPositions, renderTablePage);
+
+
 
 //Teams Page to show all of the teams in the NFL
 app.get('/teams', function(req, res, next) {
@@ -25,7 +71,7 @@ mysql.pool.query('SELECT * FROM teams', function(err, rows, fields) {
 });
 });
 
-//TODO Make a page of insert into table
+//TODO Finish making a page of insert into table into correct routes
 app.use('/insert', function(req, res){
   res.render('insert');
 });
