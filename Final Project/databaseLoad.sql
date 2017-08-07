@@ -200,7 +200,7 @@ INSERT INTO `defensiveStats`(`playerNumber`, `sacks`, `tackles`, `forcedFumbles`
 ((SELECT playerID FROM player WHERE firstName = 'Landon' AND lastName = 'Collins'), '4','100','1','5'),
 ((SELECT playerID FROM player WHERE firstName = 'Reshad' AND lastName = 'Jones'), '1','31','0','1'),
 ((SELECT playerID FROM player WHERE firstName = 'Harrison' AND lastName = 'Smith'), '2','69','0','0'),
-((SELECT playerID FROM player WHERE firstName = 'Keanu' AND lastName = 'Neal'), '0','5','72','0'),
+((SELECT playerID FROM player WHERE firstName = 'Keanu' AND lastName = 'Neal'), '0','72','1','0'),
 ((SELECT playerID FROM player WHERE firstName = 'Jamal' AND lastName = 'Adams'), '0','0','0','0'),
 ((SELECT playerID FROM player WHERE firstName = 'John' AND lastName = 'Cyprien'), '1','96','1','0'),
 ((SELECT playerID FROM player WHERE firstName = 'Kurt' AND lastName = 'Coleman'), '1','65','1','4'),

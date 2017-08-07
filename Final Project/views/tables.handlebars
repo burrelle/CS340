@@ -7,7 +7,7 @@
         </a>
       </h5>
     </div>
-<!-- Teams Table -->
+    <!-- Teams Table -->
     <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
       <div class="card-block">
         <table id="teamsTable">
@@ -42,7 +42,7 @@
       </div>
     </div>
   </div>
-<!-- Positions Group Table -->
+  <!-- Positions Group Table -->
   <div class="card">
     <div class="card-header" role="tab" id="headingTwo">
       <h5 class="mb-0">
@@ -72,96 +72,287 @@
         </table>
       </div>
     </div>
-<!-- Positions Table -->
-    <div class="card">
-      <div class="card-header" role="tab" id="headingThree">
-        <h5 class="mb-0">
+  </div>
+  <!-- Positions Table -->
+  <div class="card">
+    <div class="card-header" role="tab" id="headingThree">
+      <h5 class="mb-0">
         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           Positions
         </a>
       </h5>
-      </div>
-      <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-        <div class="card-block">
-          <table id="positionGroupTable">
-            <thead>
-              <tr>
-                <th>
-                  Positions
-                </th>
+    </div>
+    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="card-block">
+        <table id="positionGroupTable">
+          <thead>
+            <tr>
+              <th>
+                Positions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each positions}}
+              <td>
+                {{this.position}}
+              </td>
               </tr>
-            </thead>
-            <tbody>
-              {{#each positions}}
-                <td>
-                  {{this.position}}
-                </td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
+            {{/each}}
+          </tbody>
+        </table>
       </div>
     </div>
-<!-- Players Table -->
-<div class="card">
-  <div class="card-header" role="tab" id="headingFour">
-    <h5 class="mb-0">
+  </div>
+  <!-- Players Table -->
+  <div class="card">
+    <div class="card-header" role="tab" id="headingFour">
+      <h5 class="mb-0">
     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
       Players
     </a>
   </h5>
+    </div>
+    <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+      <div class="card-block">
+        <table id="positionGroupTable">
+          <thead>
+            <tr>
+              <th>
+                Number
+              </th>
+              <th>
+                First Name
+              </th>
+              <th>
+                Last Name
+              </th>
+              <th>
+                Age
+              </th>
+              <th>
+                Team
+              </th>
+              <th>
+                Position Group
+              </th>
+              <th>
+                Position
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each players}}
+              <td>
+                {{this.pNumber}}
+              </td>
+              <td>
+                {{this.firstName}}
+              </td>
+              <td>
+                {{this.lastName}}
+              </td>
+              <td>
+                {{this.age}}
+              </td>
+              <td>
+                {{this.team}}
+              </td>
+              <td>
+                {{this.positionGroup}}
+              </td>
+              <td>
+                {{this.position}}
+              </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+  <!-- Offsenive Stats -->
+  <div class="card">
+    <div class="card-header" role="tab" id="headingFive">
+      <h5 class="mb-0">
+    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+      Offsenive Stats
+    </a>
+  </h5>
+    </div>
+    <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFive">
+      <div class="card-block">
+        <table id="offsensiveStatsTable">
+          <thead>
+            <tr>
+              <th>
+                Player Number
+              </th>
+              <th>
+                Passing Attempts
+              </th>
+              <th>
+                Passes Completed
+              </th>
+              <th>
+                Passing Yards
+              </th>
+              <th>
+                Rushing Yards
+              </th>
+              <th>
+                Rushing Attempts
+              </th>
+              <th>
+                Receptions
+              </th>
+              <th>
+                Targets
+              </th>
+              <th>
+                Receiving Yards
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each offsensiveStats}}
+              <td>
+                {{this.playerNumber}}
+              </td>
+              <td>
+                {{this.passingAttempts}}
+              </td>
+              <td>
+                {{this.passesCompleted}}
+              </td>
+              <td>
+                {{this.passingYards}}
+              </td>
+              <td>
+                {{this.rushingYards}}
+              </td>
+              <td>
+                {{this.rushingAttempts}}
+              </td>
+              <td>
+                {{this.receptions}}
+              </td>
+              <td>
+                {{this.targets}}
+              </td>
+              <td>
+                {{this.receivingYards}}
+              </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Defensive Stats Table -->
+  <div class="card">
+    <div class="card-header" role="tab" id="headingSix">
+      <h5 class="mb-0">
+    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+      Defensive Stats
+    </a>
+  </h5>
+    </div>
+    <div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingSix">
+      <div class="card-block">
+        <table id="defensiveStatsTable">
+          <thead>
+            <tr>
+              <th>
+                Player Number
+              </th>
+              <th>
+                Sacks
+              </th>
+              <th>
+                Tackles
+              </th>
+              <th>
+                Forced Fumbles
+              </th>
+              <th>
+                Interceptions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each defensiveStats}}
+              <td>
+                {{this.playerNumber}}
+              </td>
+              <td>
+                {{this.sacks}}
+              </td>
+              <td>
+                {{this.tackles}}
+              </td>
+              <td>
+                {{this.forcedFumbles}}
+              </td>
+              <td>
+                {{this.interceptions}}
+              </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<!-- Special Teams Stats -->
+<div class="card">
+  <div class="card-header" role="tab" id="headingSeven">
+    <h5 class="mb-0">
+  <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+    Special Teams Stats
+  </a>
+</h5>
+  </div>
+  <div id="collapseSeven" class="collapse" role="tabpanel" aria-labelledby="headingSeven">
     <div class="card-block">
-      <table id="positionGroupTable">
+      <table id="specialTeamsStatsTable">
         <thead>
           <tr>
             <th>
-              Number
+              Player Number
             </th>
             <th>
-              First Name
+              Field Goal Attempts
             </th>
             <th>
-              Last Name
+              Field Goals Made
             </th>
             <th>
-              Age
+              Punts
             </th>
             <th>
-              Team
-            </th>
-            <th>
-              Position Group
-            </th>
-            <th>
-              Position
+              Average Punt Yards
             </th>
           </tr>
         </thead>
         <tbody>
-          {{#each players}}
+          {{#each specialTeamsStats}}
             <td>
-              {{this.pNumber}}
+              {{this.playerNumber}}
             </td>
             <td>
-              {{this.firstName}}
+              {{this.fieldGoalAttempts}}
             </td>
             <td>
-              {{this.lastName}}
+              {{this.fieldGoalMade}}
             </td>
             <td>
-              {{this.age}}
+              {{this.punts}}
             </td>
             <td>
-              {{this.team}}
-            </td>
-            <td>
-              {{this.positionGroup}}
-            </td>
-            <td>
-              {{this.position}}
+              {{this.avergePuntYards}}
             </td>
             </tr>
           {{/each}}
@@ -170,4 +361,4 @@
     </div>
   </div>
 </div>
-  </div>
+</div>

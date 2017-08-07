@@ -51,7 +51,39 @@ function getPlayers(req,res,next){
       return;
     }
     req.players = rows;
-    console.log(req.players);
+    return next();
+  })
+}
+
+function getOffensiveStats(req,res,next){
+  mysql.pool.query('SELECT * from offsensiveStats', function(err, rows, fields){
+    if(err){
+      next(err);
+      return;
+    }
+    req.offsensiveStats = rows
+    return next();
+  })
+}
+
+function getDefensiveStats(req,res,next){
+  mysql.pool.query('SELECT * from defensiveStats', function(err,rows, fields){
+    if(err){
+      next(err);
+      return;
+    }
+    req.defensiveStats = rows
+    return next();
+  })
+}
+
+function getSpecialTeamsStats(req,res,next){
+  mysql.pool.query('SELECT * from specialTeamsStats', function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+    req.specialTeamsStats = rows
     return next();
   })
 }
@@ -61,13 +93,16 @@ function renderTablePage(req, res){
     teams: req.teams,
     positionGroup: req.positionGroup,
     positions: req.positions,
-    players: req.players
+    players: req.players,
+    offsensiveStats: req.offsensiveStats,
+    defensiveStats: req.defensiveStats,
+    specialTeamsStats: req.specialTeamsStats
   });
 }
 
 //TODO Add in all of the tables to collapsible divs
 
-app.get('/tables', getTeams, getPositionGroups, getPositions, getPlayers, renderTablePage);
+app.get('/tables', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, renderTablePage);
 
 
 
@@ -111,6 +146,11 @@ mysql.pool.query('SELECT * FROM teams', function(err, rows, fields) {
 });
 });
 });
+
+//Homepage
+app.get('/', function(req,res){
+  res.render('home');
+})
 
 //404 Page
 app.use(function(req, res) {
