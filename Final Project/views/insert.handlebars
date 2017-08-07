@@ -50,7 +50,13 @@
     <input type="text" name="lastName" />
     <label>Age: </label>
     <input type="number" name="age" />
-<!--TODO Finish form with dynamic additions -->  
+<!--TODO Finish form with dynamic additions -->
+    <label>Team: </label>
+    {{#each teams}}
+    <select>
+      <option value="{{this.mascot}}">{{this.mascot}}</option>
+    </select>
+    {{/each}}
   </fieldset>
   <label></label>
 </form>
