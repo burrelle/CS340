@@ -18,7 +18,7 @@ CREATE TABLE player(
   age int(11) NOT NULL,
   team int(11) references teams(teamID),
   positionGroup int(11) references positionGroup(positionGroupID),
-  positon int(11) references positions(positionID)
+  position int(11) references positions(positionID)
 );
 
 -- Creating a table teams that is able to be referenced by the players table.
@@ -134,9 +134,9 @@ INSERT INTO `positions` (`positionGroup`, `position`) VALUES
 ((SELECT positionGroupID from positionGroup WHERE positionGroup = 'Special Teams'), 'P');
 
 -- Insert Players into the player table.
--- INSERT INTO `player`(`pNumber`, `firstName`, `lastName`, `age`, `team`, `positionGroup`, `positon`)
+-- INSERT INTO `player`(`pNumber`, `firstName`, `lastName`, `age`, `team`, `positionGroup`, `position`)
 
-INSERT INTO `player`(`pNumber`, `firstName`, `lastName`, `age`, `team`, `positionGroup`, `positon`) VALUES
+INSERT INTO `player`(`pNumber`, `firstName`, `lastName`, `age`, `team`, `positionGroup`, `position`) VALUES
 ('5', 'Tyrod', 'Taylor', '27', (SELECT teamID FROM teams WHERE mascot = 'Bills'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Offense'), (SELECT positionID FROM positions WHERE position = 'QB')),
 ('12', 'Aaron', 'Rodgers', '33', (SELECT teamID FROM teams WHERE mascot = 'Packers'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Offense'), (SELECT positionID FROM positions WHERE position = 'QB')),
 ('3', 'Jameis', 'Winston', '21', (SELECT teamID FROM teams WHERE mascot = 'Buccaneers'), (SELECT positionGroupID FROM positionGroup WHERE positionGroup = 'Offense'), (SELECT positionID FROM positions WHERE position = 'QB')),

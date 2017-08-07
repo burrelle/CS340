@@ -2,7 +2,7 @@
 <form action="/teams-insert" method="get">
   <fieldset>
     <legend>
-      Add a team:
+      Add a team
     </legend>
     <label>City: </label>
     <input type="text" name="city" required />
@@ -50,13 +50,25 @@
     <input type="text" name="lastName" />
     <label>Age: </label>
     <input type="number" name="age" />
-<!--TODO Finish form with dynamic additions -->
     <label>Team: </label>
-    {{#each teams}}
     <select>
+      {{#each teams}}
       <option value="{{this.mascot}}">{{this.mascot}}</option>
+      {{/each}}
     </select>
-    {{/each}}
+    <label>Position Group</label>
+    <select>
+      {{#each positionGroup}}
+      <option value="{{this.positionGroup}}">{{this.positionGroup}}</option>
+      {{/each}}
+    </select>
+    <select>
+      {{#each positions}}
+      <option value="{{this.position}}">{{this.position}}</option>
+      {{/each}}
+    </select>
+    <input type="submit" id="playerSubmit" />
   </fieldset>
-  <label></label>
 </form>
+
+<!-- TODO Stats Table -->

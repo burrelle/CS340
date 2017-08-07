@@ -7,7 +7,7 @@
         </a>
       </h5>
     </div>
-
+<!-- Teams Table -->
     <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
       <div class="card-block">
         <table id="teamsTable">
@@ -42,6 +42,7 @@
       </div>
     </div>
   </div>
+<!-- Positions Group Table -->
   <div class="card">
     <div class="card-header" role="tab" id="headingTwo">
       <h5 class="mb-0">
@@ -71,6 +72,7 @@
         </table>
       </div>
     </div>
+<!-- Positions Table -->
     <div class="card">
       <div class="card-header" role="tab" id="headingThree">
         <h5 class="mb-0">
@@ -101,4 +103,71 @@
         </div>
       </div>
     </div>
+<!-- Players Table -->
+<div class="card">
+  <div class="card-header" role="tab" id="headingFour">
+    <h5 class="mb-0">
+    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+      Players
+    </a>
+  </h5>
+  </div>
+  <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+    <div class="card-block">
+      <table id="positionGroupTable">
+        <thead>
+          <tr>
+            <th>
+              Number
+            </th>
+            <th>
+              First Name
+            </th>
+            <th>
+              Last Name
+            </th>
+            <th>
+              Age
+            </th>
+            <th>
+              Team
+            </th>
+            <th>
+              Position Group
+            </th>
+            <th>
+              Position
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each players}}
+            <td>
+              {{this.pNumber}}
+            </td>
+            <td>
+              {{this.firstName}}
+            </td>
+            <td>
+              {{this.lastName}}
+            </td>
+            <td>
+              {{this.age}}
+            </td>
+            <td>
+              {{this.team}}
+            </td>
+            <td>
+              {{this.positionGroup}}
+            </td>
+            <td>
+              {{this.position}}
+            </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
   </div>

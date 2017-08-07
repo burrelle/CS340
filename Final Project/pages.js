@@ -37,9 +37,21 @@ function getPositions(req, res, next){
   mysql.pool.query('SELECT * FROM positions', function(err, rows, fields){
     if(err){
       next(err);
-      return
+      return;
     }
     req.positions = rows;
+    return next();
+  })
+}
+
+function getPlayers(req,res,next){
+  mysql.pool.query('SELECT * FROM player', function(err, rows, fields){
+    if(err){
+      next(err);
+      return;
+    }
+    req.players = rows;
+    console.log(req.players);
     return next();
   })
 }
@@ -48,13 +60,14 @@ function renderTablePage(req, res){
   res.render('tables', {
     teams: req.teams,
     positionGroup: req.positionGroup,
-    positions: req.positions
+    positions: req.positions,
+    players: req.players
   });
 }
 
 //TODO Add in all of the tables to collapsible divs
 
-app.get('/tables', getTeams, getPositionGroups, getPositions, renderTablePage);
+app.get('/tables', getTeams, getPositionGroups, getPositions, getPlayers, renderTablePage);
 
 
 
@@ -72,8 +85,12 @@ mysql.pool.query('SELECT * FROM teams', function(err, rows, fields) {
 });
 
 //TODO Finish making a page of insert into table into correct routes
-app.use('/insert', function(req, res){
-  res.render('insert');
+app.use('/insert', getTeams, getPositionGroups, getPositions, function(req, res){
+  res.render('insert', {
+    teams: req.teams,
+    positionGroup: req.positionGroup,
+    positions: req.positions
+  });
 });
 
 //Demo to try and insert a team.
