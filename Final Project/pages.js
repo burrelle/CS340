@@ -1,19 +1,20 @@
 var express = require('express');
 var mysql = require('./dbcon.js');
+var bodyParser = require('body-parser')
 
 var app = express();
 var handlebars = require('express-handlebars').create({
   defaultLayout: 'main'
 });
-
+app.use(bodyParser.urlencoded({ extended: false }))
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 3000);
 app.use(express.static('public'));
 
-function getTeams(req,res,next){
-  mysql.pool.query('SELECT * FROM teams', function(err,rows,fields){
-    if(err){
+function getTeams(req, res, next) {
+  mysql.pool.query('SELECT * FROM teams', function(err, rows, fields) {
+    if (err) {
       next(err);
       return;
     }
@@ -22,9 +23,9 @@ function getTeams(req,res,next){
   });
 }
 
-function getPositionGroups(req, res,next){
-  mysql.pool.query('SELECT * FROM positionGroup', function(err,rows, fields){
-    if(err){
+function getPositionGroups(req, res, next) {
+  mysql.pool.query('SELECT * FROM positionGroup', function(err, rows, fields) {
+    if (err) {
       next(err);
       return;
     }
@@ -33,9 +34,9 @@ function getPositionGroups(req, res,next){
   });
 }
 
-function getPositions(req, res, next){
-  mysql.pool.query('SELECT * FROM positions', function(err, rows, fields){
-    if(err){
+function getPositions(req, res, next) {
+  mysql.pool.query('SELECT * FROM positions', function(err, rows, fields) {
+    if (err) {
       next(err);
       return;
     }
@@ -44,9 +45,9 @@ function getPositions(req, res, next){
   })
 }
 
-function getPlayers(req,res,next){
-  mysql.pool.query('SELECT * FROM player', function(err, rows, fields){
-    if(err){
+function getPlayers(req, res, next) {
+  mysql.pool.query('SELECT * FROM player', function(err, rows, fields) {
+    if (err) {
       next(err);
       return;
     }
@@ -55,9 +56,9 @@ function getPlayers(req,res,next){
   })
 }
 
-function getOffensiveStats(req,res,next){
-  mysql.pool.query('SELECT * from offsensiveStats', function(err, rows, fields){
-    if(err){
+function getOffensiveStats(req, res, next) {
+  mysql.pool.query('SELECT * from offsensiveStats', function(err, rows, fields) {
+    if (err) {
       next(err);
       return;
     }
@@ -66,9 +67,9 @@ function getOffensiveStats(req,res,next){
   })
 }
 
-function getDefensiveStats(req,res,next){
-  mysql.pool.query('SELECT * from defensiveStats', function(err,rows, fields){
-    if(err){
+function getDefensiveStats(req, res, next) {
+  mysql.pool.query('SELECT * from defensiveStats', function(err, rows, fields) {
+    if (err) {
       next(err);
       return;
     }
@@ -77,9 +78,9 @@ function getDefensiveStats(req,res,next){
   })
 }
 
-function getSpecialTeamsStats(req,res,next){
-  mysql.pool.query('SELECT * from specialTeamsStats', function(err,rows,fields){
-    if(err){
+function getSpecialTeamsStats(req, res, next) {
+  mysql.pool.query('SELECT * from specialTeamsStats', function(err, rows, fields) {
+    if (err) {
       next(err);
       return;
     }
@@ -88,7 +89,7 @@ function getSpecialTeamsStats(req,res,next){
   })
 }
 
-function renderTablePage(req, res){
+function renderTablePage(req, res) {
   res.render('tables', {
     teams: req.teams,
     positionGroup: req.positionGroup,
@@ -100,55 +101,84 @@ function renderTablePage(req, res){
   });
 }
 
-//TODO Add in all of the tables to collapsible divs
-
 app.get('/tables', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, renderTablePage);
 
 
-
-//Teams Page to show all of the teams in the NFL
-app.get('/teams', function(req, res, next) {
-var context = {};
-mysql.pool.query('SELECT * FROM teams', function(err, rows, fields) {
-  if (err) {
-    next(err);
-    return;
-  }
-  context.results = rows;
-  res.render('teams', context)
-});
-});
-
 //TODO Finish making a page of insert into table into correct routes
-app.use('/insert', getTeams, getPositionGroups, getPositions, function(req, res){
+app.use('/insert', getTeams, getPositionGroups, getPositions, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res) {
   res.render('insert', {
     teams: req.teams,
     positionGroup: req.positionGroup,
-    positions: req.positions
+    positions: req.positions,
+    players: req.players,
+    offsensiveStats: req.offsensiveStats,
+    defensiveStats: req.defensiveStats,
+    specialTeamsStats: req.specialTeamsStats
   });
 });
 
 //Demo to try and insert a team.
 app.get('/teams-insert', function(req, res, next) {
-var context = {};
-mysql.pool.query('INSERT INTO `teams`(`city`, `mascot`, `stadium`) VALUES (?, ?, ?)',[req.query.city, req.query.mascot, req.query.stadium], function(err, result) {
-  if (err) {
-    next(err);
-    return;
-  }
-mysql.pool.query('SELECT * FROM teams', function(err, rows, fields) {
-  if (err) {
-    next(err);
-    return;
-  }
-  context.results = rows;
-  res.render('teams', context)
-});
-});
+  mysql.pool.query('INSERT INTO `teams`(`city`, `mascot`, `stadium`) VALUES (?, ?, ?)', [req.query.city, req.query.mascot, req.query.stadium], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    //TODO Figure out how to redirect page after inserting.
+    res.render('insert', {
+      teams: req.teams,
+      positionGroup: req.positionGroup,
+      positions: req.positions,
+      players: req.players,
+      offsensiveStats: req.offsensiveStats,
+      defensiveStats: req.defensiveStats,
+      specialTeamsStats: req.specialTeamsStats
+    });
+  });
 });
 
+app.get('/positionGroup-insert', function(req, res, next) {
+  mysql.pool.query('INSERT INTO `positionGroup`(`positionGroup`) VALUES (?)', [req.query.positionGroup], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('insert', {
+      teams: req.teams,
+      positionGroup: req.positionGroup,
+      positions: req.positions,
+      players: req.players,
+      offsensiveStats: req.offsensiveStats,
+      defensiveStats: req.defensiveStats,
+      specialTeamsStats: req.specialTeamsStats
+    });
+  });
+});
+
+
+//TODO Positions Insert specifically dealing with the foreign key
+app.get('/positions-insert', function(req,res,next){
+  mysql.pool.query('INSERT INTO `positions` (`positionGroup`, `position`) VALUES ((SELECT positionGroupID from positionGroup WHERE positionGroup = (?)),(?)', [req.query.positionGroup], [req.query.position], function(err,result){
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('insert', {
+      teams: req.teams,
+      positionGroup: req.positionGroup,
+      positions: req.positions,
+      players: req.players,
+      offsensiveStats: req.offsensiveStats,
+      defensiveStats: req.defensiveStats,
+      specialTeamsStats: req.specialTeamsStats
+    });
+  });
+});
+
+
+
 //Homepage
-app.get('/', function(req,res){
+app.get('/', function(req, res) {
   res.render('home');
 })
 

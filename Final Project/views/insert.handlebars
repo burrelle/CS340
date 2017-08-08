@@ -10,7 +10,7 @@
     <input type="text" name="mascot" required />
     <label>Stadium: </label>
     <input type="text" name="stadium" required />
-    <input type="submit" id="teamSubmit" href="/teams" />
+    <input type="submit" id="teamSubmit"/>
   </fieldset>
 </form>
 
@@ -22,15 +22,21 @@
     </legend>
     <label>Position Group: </label>
     <input type="text" name="positionGroup" />
-    <input type="submit" id="positionGroupSubmit" href="/positionGroup" />
+    <input type="submit" id="positionGroupSubmit" href="/insert" />
   </fieldset>
 </form>
 
-<form action="/insert" method="get">
+<form action="/positions-insert" method="get">
   <fieldset>
     <legend>
       Add a position
     </legend>
+    <label>Position Group</label>
+    <select>
+      {{#each positionGroup}}
+      <option value="{{this.positionGroup}}" name="positionGroup">{{this.positionGroup}}</option>
+      {{/each}}
+    </select>
     <label>Position: </label>
     <input type="text" name="position" />
     <input type="submit" id="positionSubmit" />
