@@ -158,7 +158,7 @@ app.get('/positionGroup-insert', function(req, res, next) {
 
 //TODO Positions Insert specifically dealing with the foreign key
 app.get('/positions-insert', function(req,res,next){
-  mysql.pool.query('INSERT INTO `positions` (`positionGroup`, `position`) VALUES ((SELECT positionGroupID from positionGroup WHERE positionGroup = (?)),(?)', [req.query.positionGroup], [req.query.position], function(err,result){
+  mysql.pool.query('INSERT INTO `positions` (`positionGroup`, `position`) VALUES (SELECT positionGroupID from positionGroup WHERE positionGroup = (?)),(?)', [req.query.positionGroup], [req.query.position], function(err,result){
     if (err) {
       next(err);
       return;
