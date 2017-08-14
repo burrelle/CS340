@@ -7,7 +7,9 @@ var app = express();
 var handlebars = require('express-handlebars').create({
   defaultLayout: 'main'
 });
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 3000);
@@ -16,9 +18,8 @@ app.use(express.static('public'));
 //Handlebars helper function [https://stackoverflow.com/questions/22103989/adding-offset-to-index-when-looping-through-items-in-handlebars]
 var Handlebars = require('handlebars');
 
-Handlebars.registerHelper("inc", function(value, options)
-{
-    return parseInt(value) + 1;
+Handlebars.registerHelper("inc", function(value, options) {
+  return parseInt(value) + 1;
 });
 
 
@@ -167,8 +168,8 @@ app.get('/positionGroup-insert', function(req, res, next) {
 
 
 //TODO Positions Insert specifically dealing with the foreign key
-app.get('/positions-insert', function(req,res,next){
-    mysql.pool.query('INSERT INTO `positions` (`positionGroup`, `position`) VALUES  (?,?)', [req.query.positionGroup, req.query.position], function(err,result){
+app.get('/positions-insert', function(req, res, next) {
+  mysql.pool.query('INSERT INTO `positions` (`positionGroup`, `position`) VALUES  (?,?)', [req.query.positionGroup, req.query.position], function(err, result) {
     if (err) {
       next(err);
       return;
@@ -185,8 +186,62 @@ app.get('/positions-insert', function(req,res,next){
   });
 });
 
-app.get('/player-insert', function(req,res,next){
-  mysql.pool.query('INSERT INTO `player`(`pNumber`, `firstName`, `lastName`, `age`, `team`, `positionGroup`, `position`) VALUES (?,?,?,?,?,?,?)', [req.query.pNumber, req.query.firstName, req.query.lastName, req.query.age, req.query.mascot, req.query.positionGroup, req.query.position], function(err,result){
+app.get('/player-insert', function(req, res, next) {
+  mysql.pool.query('INSERT INTO `player`(`pNumber`, `firstName`, `lastName`, `age`, `team`, `positionGroup`, `position`) VALUES (?,?,?,?,?,?,?)', [req.query.pNumber, req.query.firstName, req.query.lastName, req.query.age, req.query.mascot, req.query.positionGroup, req.query.position], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('insert', {
+      teams: req.teams,
+      positionGroup: req.positionGroup,
+      positions: req.positions,
+      players: req.players,
+      offsensiveStats: req.offsensiveStats,
+      defensiveStats: req.defensiveStats,
+      specialTeamsStats: req.specialTeamsStats
+    });
+  });
+});
+
+app.get('/offsensiveStats-insert', function(req, res, next) {
+  mysql.pool.query('INSERT INTO `offsensiveStats`(`playerNumber`, `passingAttempts`, `passesCompleted`, `passingYards`, `rushingYards`, `rushingAttempts`, `receptions`, `targets`,`receivingYards`)VALUES (?,?,?,?,?,?,?,?,?)', [req.query.playerNumber, req.query.passingAttempts, req.query.passesCompleted, req.query.passingYards, req.query.rushingYards, req.query.rushingAttempts, req.query.receptions, req.query.targets, req.query.receivingYards], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('insert', {
+      teams: req.teams,
+      positionGroup: req.positionGroup,
+      positions: req.positions,
+      players: req.players,
+      offsensiveStats: req.offsensiveStats,
+      defensiveStats: req.defensiveStats,
+      specialTeamsStats: req.specialTeamsStats
+    });
+  });
+});
+
+app.get('/defensiveStats-insert', function(req,res,next){
+  mysql.pool.query('INSERT INTO `defensiveStats`(`playerNumber`, `sacks`, `tackles`,`forcedFumbles`,`interceptions`) VALUES (?,?,?,?,?)', [req.query.playerNumber, req.query.sacks, req.query.tackles, req.query.forcedFumbles, req.query.interceptions], function(err,result){
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('insert', {
+      teams: req.teams,
+      positionGroup: req.positionGroup,
+      positions: req.positions,
+      players: req.players,
+      offsensiveStats: req.offsensiveStats,
+      defensiveStats: req.defensiveStats,
+      specialTeamsStats: req.specialTeamsStats
+    });
+  });
+});
+
+app.get('/specialTeamsStats-insert', function(req,res,next){
+  mysql.pool.query('INSERT INTO `specialTeamsStats`(`playerNumber`, `fieldGoalAttempts`, `fieldGoalMade`,`punts`,`avergePuntYards`) VALUES (?,?,?,?,?)', [req.query.playerNumber, req.query.fieldGoalAttempts, req.query.fieldGoalMade, req.query.punts, req.query.avergePuntYards], function(err,result){
     if (err) {
       next(err);
       return;
