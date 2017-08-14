@@ -79,5 +79,33 @@
 
 <!-- TODO Stats Table -->
 <form action="/offensiveStats-insert" method="get">
-  
+  <fieldset>
+    <legend>
+      Add Offensive Stats
+    </legend>
+    <select name="playerNumber">
+      {{#each player}}
+      <option>
+        {{this.firstName}} {{this.lastName}}
+      </option>
+      {{/each}}
+    </select>
+    <label>Passing Attempts: </label>
+    <input type="number" name="passingAttempts" />
+    <label>Passes Completed: </label>
+    <input type="number" name="passesCompleted" />
+    <label>Passing Yards: </label>
+    <input type="number" name="passingYards" />
+    <label>Rushing Yards: </label>
+    <input type="number" name="rushingYards" />
+    <label>Rushing Attempts: </label>
+    <input type="number" name="rushingAttempts" />
+    <label>Receptions: </label>
+    <input type="number" name="receptions" />
+    <label>Targets: </label>
+    <input type="number" name="targets" />
+    <label>Receiving Yards </label>
+    <input type="number" name="receivingYards" />
+    <input type="submit" id="offsensiveStatsSubmit" />
+  </fieldset>
 </form>
