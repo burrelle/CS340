@@ -35,6 +35,35 @@
               <td>
                 {{this.stadium}}
               </td>
+              <td>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{this.id}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
+            <div class="collapse" id="{{this.id}}">
+              <div class="card card-block">
+                <form action="/teams-update" method="get">
+                  <fieldset>
+                    <legend>
+                      Update Teams
+                    </legend>
+                    <input type="hidden" name="id" value= {{this.id}} />
+                    <div class="form-group">
+                      <label>City: </label>
+                      <input type="text" name="city" value= {{this.city}}/>
+                    </div>
+                    <div class="form-group">
+                      <label>Mascot: </label>
+                      <input type="text" name="mascot" value= {{this.mascot}}/>
+                    </div>
+                    <div class="form-group">
+                      <label>Stadium: </label>
+                      <input type="text" name="stadium" value= {{this.stadium}}/>
+                    </div>
+                    </div>
+                    <button class="btn btn-warning" type="submit" id="exerciseSubmit" />Submit</button>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+              </td>
               </tr>
             {{/each}}
           </tbody>

@@ -258,6 +258,33 @@ app.get('/specialTeamsStats-insert', function(req,res,next){
   });
 });
 
+//Update Functions
+app.get('/teams-update', function(req,res,next){
+  var context = {};
+  mysql.pool.query("SELECT * FROM teams WHERE id=?", [req.query.id], function(err, result){
+    if (err) {
+      next(err);
+      return;
+    }
+    if(result.length == 1){
+      var curVals = result[0];
+      mysql.pool.query("UPDATE teams SET city=?, mascot=?, stadium=? WHERE id=?", [req.query.city||curVals.city, req.query.mascot||curVals.mascot, req.query.stadium||curVals.stadium], function(err,result){
+        if (err) {
+            next(err);
+            return;
+          }
+          mysql.pool.query('SELECT * FROM teams', function(err, rows, fields) {
+            if (err) {
+              next(err);
+              return;
+            }
+            req.teams = rows;
+            return next();
+          });
+      });
+    }
+  });
+});
 
 //Homepage
 app.get('/', function(req, res) {
