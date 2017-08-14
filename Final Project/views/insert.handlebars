@@ -77,7 +77,6 @@
   </fieldset>
 </form>
 
-<!-- TODO Stats Table -->
 <form action="/offensiveStats-insert" method="get">
   <fieldset>
     <legend>
@@ -107,5 +106,53 @@
     <label>Receiving Yards </label>
     <input type="number" name="receivingYards" />
     <input type="submit" id="offsensiveStatsSubmit" />
+  </fieldset>
+</form>
+
+<form action="/defensiveStats-insert" method="get">
+  <fieldset>
+    <legend>
+      Add Defensive Stats
+    </legend>
+    <select name="playerNumber">
+      {{#each players}}
+      <option value="{{inc @index}}">
+        {{this.firstName}} {{this.lastName}}
+      </option>
+      {{/each}}
+    </select>
+    <label>Sacks: </label>
+    <input type="number" name="sacks" />
+    <label>Tackles: </label>
+    <input type="number" name="tackles" />
+    <label>Forced Fumbles: </label>
+    <input type="number" name="forcedFumbles" />
+    <label>Interceptions: </label>
+    <input type="number" name="interceptions" />
+    <input type="submit" id="defensiveStatsSubmit" />
+  </fieldset>
+</form>
+
+<form action="/specialTeamsStats-insert" method="get">
+  <fieldset>
+    <legend>
+      Add Special Teams Stats
+    </legend>
+    <select name="playerNumber">
+      {{#each players}}
+      <option value="{{inc @index}}">
+        {{this.firstName}} {{this.lastName}}
+      </option>
+      {{/each}}
+    </select>
+    <label>Field Goal Attempts: </label>
+    <input type="number" name="fieldGoalAttempts" />
+    <label>Field Goals Made: </label>
+    <input type="number" name="fieldGoalMade" />
+    <label>Punts: </label>
+    <input type="number" name="punts" />
+    <label>avergePuntYards: </label>
+    <input type="number" name="avergePuntYards" />
+    <input type="submit" id="specialTeamsStatsSubmit" />
   </fieldset>
 </form>

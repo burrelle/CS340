@@ -76,9 +76,6 @@ CREATE TABLE specialTeamsStats (
   avergePuntYards int(11)
 );
 
--- TODO Add to myPHPAdmin and run to create the tables.
-
-
 -- File that adds the teams using the correct SQL Syntax
 -- INSERT INTO `teams`(`city`, `mascot`, `stadium`) VALUES ([value-1],[value-2],[value-3])
 INSERT INTO `teams`(`city`, `mascot`, `stadium`) VALUES
