@@ -32,9 +32,9 @@
       Add a position
     </legend>
     <label>Position Group</label>
-    <select>
+    <select name = "positionGroup">
       {{#each positionGroup}}
-      <option value="{{this.positionGroup}}" name="positionGroup">{{this.positionGroup}}</option>
+      <option value="{{inc @index}}">{{this.positionGroup}}</option>
       {{/each}}
     </select>
     <label>Position: </label>
@@ -43,7 +43,7 @@
   </fieldset>
 </form>
 
-<form action="/insert" method="get">
+<form action="/player-insert" method="get">
   <fieldset>
     <legend>
     Add a player
@@ -57,20 +57,20 @@
     <label>Age: </label>
     <input type="number" name="age" />
     <label>Team: </label>
-    <select>
+    <select name ="mascot">
       {{#each teams}}
-      <option value="{{this.mascot}}">{{this.mascot}}</option>
+      <option value="{{inc @index}}">{{this.mascot}}</option>
       {{/each}}
     </select>
     <label>Position Group</label>
-    <select>
+    <select name="positionGroup">
       {{#each positionGroup}}
-      <option value="{{this.positionGroup}}">{{this.positionGroup}}</option>
+      <option value="{{inc @index}}">{{this.positionGroup}}</option>
       {{/each}}
     </select>
-    <select>
+    <select name="position">
       {{#each positions}}
-      <option value="{{this.position}}">{{this.position}}</option>
+      <option value="{{inc @index}}">{{this.position}}</option>
       {{/each}}
     </select>
     <input type="submit" id="playerSubmit" />
@@ -78,3 +78,6 @@
 </form>
 
 <!-- TODO Stats Table -->
+<form action="/offensiveStats-insert" method="get">
+  
+</form>
