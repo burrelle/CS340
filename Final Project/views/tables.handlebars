@@ -22,6 +22,9 @@
               <th>
                 Stadium
               </th>
+              <th>
+                Edit
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -36,29 +39,29 @@
                 {{this.stadium}}
               </td>
               <td>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{this.id}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
-            <div class="collapse" id="{{this.id}}">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{this.teamID}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
+            <div class="collapse" id="{{this.teamID}}">
               <div class="card card-block">
                 <form action="/teams-update" method="get">
                   <fieldset>
                     <legend>
                       Update Teams
                     </legend>
-                    <input type="hidden" name="id" value= {{this.id}} />
+                    <input type="hidden" name="teamID" value= {{this.teamID}} />
                     <div class="form-group">
                       <label>City: </label>
-                      <input type="text" name="city" value= {{this.city}}/>
+                      <input type="text" name="city" value= {{this.city}} />
                     </div>
                     <div class="form-group">
                       <label>Mascot: </label>
-                      <input type="text" name="mascot" value= {{this.mascot}}/>
+                      <input type="text" name="mascot" value= {{this.mascot}} />
                     </div>
                     <div class="form-group">
                       <label>Stadium: </label>
-                      <input type="text" name="stadium" value= {{this.stadium}}/>
+                      <input type="text" name="stadium" value= "{{this.stadium}}"/>
                     </div>
                     </div>
-                    <button class="btn btn-warning" type="submit" id="exerciseSubmit" />Submit</button>
+                    <button class="btn btn-warning" type="submit" id="teamSubmit" />Submit</button>
                   </fieldset>
                 </form>
               </div>

@@ -261,7 +261,7 @@ app.get('/specialTeamsStats-insert', function(req,res,next){
 //Update Functions
 app.get('/teams-update', function(req,res,next){
   var context = {};
-  mysql.pool.query("SELECT * FROM teams WHERE id=?", [req.query.id], function(err, result){
+  mysql.pool.query("SELECT * FROM teams WHERE teamID=?", [req.query.teamID], function(err, result){
     if (err) {
       next(err);
       return;
