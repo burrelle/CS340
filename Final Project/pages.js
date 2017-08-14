@@ -129,13 +129,18 @@ app.use('/insert', getTeams, getPositionGroups, getPositions, getPlayers, getOff
 });
 
 //Demo to try and insert a team.
-app.get('/teams-insert', function(req, res, next) {
+app.get('/teams-insert', getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
   mysql.pool.query('INSERT INTO `teams`(`city`, `mascot`, `stadium`) VALUES (?, ?, ?)', [req.query.city, req.query.mascot, req.query.stadium], function(err, result) {
     if (err) {
       next(err);
       return;
     }
-    //TODO Figure out how to redirect page after inserting.
+  mysql.pool.query('SELECT * FROM teams', function(err, rows, fields) {
+      if (err) {
+        next(err);
+        return;
+      }
+    req.teams = rows;
     res.render('insert', {
       teams: req.teams,
       positionGroup: req.positionGroup,
@@ -147,6 +152,8 @@ app.get('/teams-insert', function(req, res, next) {
     });
   });
 });
+});
+
 
 app.get('/positionGroup-insert', function(req, res, next) {
   mysql.pool.query('INSERT INTO `positionGroup`(`positionGroup`) VALUES (?)', [req.query.positionGroup], function(err, result) {
@@ -259,7 +266,7 @@ app.get('/specialTeamsStats-insert', function(req,res,next){
 });
 
 //Update Functions
-app.get('/teams-update', function(req,res,next){
+app.get('/teams-update', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req,res,next){
   var context = {};
   mysql.pool.query("SELECT * FROM teams WHERE teamID=?", [req.query.teamID], function(err, result){
     if (err) {
@@ -268,7 +275,7 @@ app.get('/teams-update', function(req,res,next){
     }
     if(result.length == 1){
       var curVals = result[0];
-      mysql.pool.query("UPDATE teams SET city=?, mascot=?, stadium=? WHERE id=?", [req.query.city||curVals.city, req.query.mascot||curVals.mascot, req.query.stadium||curVals.stadium], function(err,result){
+      mysql.pool.query("UPDATE teams SET city=?, mascot=?, stadium=? WHERE teamID=?", [req.query.city||curVals.city, req.query.mascot||curVals.mascot, req.query.stadium||curVals.stadium, req.query.teamID], function(err,result){
         if (err) {
             next(err);
             return;
@@ -279,12 +286,22 @@ app.get('/teams-update', function(req,res,next){
               return;
             }
             req.teams = rows;
-            return next();
+            res.render('tables', {
+              teams: req.teams,
+              positionGroup: req.positionGroup,
+              positions: req.positions,
+              players: req.players,
+              offsensiveStats: req.offsensiveStats,
+              defensiveStats: req.defensiveStats,
+              specialTeamsStats: req.specialTeamsStats
+            });
           });
       });
     }
   });
 });
+
+//TODO UPDATE functions for all of the remaining tables
 
 //Homepage
 app.get('/', function(req, res) {
