@@ -115,7 +115,7 @@ app.get('/tables', getTeams, getPositionGroups, getPositions, getPlayers, getOff
 
 
 //TODO Finish making a page of insert into table into correct routes
-app.use('/insert', getTeams, getPositionGroups, getPositions, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res) {
+app.use('/insert', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res) {
   res.render('insert', {
     teams: req.teams,
     positionGroup: req.positionGroup,

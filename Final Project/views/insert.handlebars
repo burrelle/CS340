@@ -84,8 +84,8 @@
       Add Offensive Stats
     </legend>
     <select name="playerNumber">
-      {{#each player}}
-      <option>
+      {{#each players}}
+      <option value="{{inc @index}}">
         {{this.firstName}} {{this.lastName}}
       </option>
       {{/each}}
