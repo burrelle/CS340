@@ -342,14 +342,14 @@ app.get('/teams-update', getTeams, getPositionGroups, getPositions, getPlayers, 
 //Position Group Update
 app.get('/positionGroup-update', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
   var context = {};
-  mysql.pool.query("SELECT * FROM teams WHERE positionGroupID=?", [req.query.positionGroupID], function(err, result) {
+  mysql.pool.query("SELECT * FROM positionGroup WHERE positionGroupID=?", [req.query.positionGroupID], function(err, result) {
     if (err) {
       next(err);
       return;
     }
     if (result.length == 1) {
       var curVals = result[0];
-      mysql.pool.query("UPDATE teams SET positionGroup=? WHERE positionGroupID=?", [req.query.positionGroup || curVals.positionGroup, req.query.positionGroupID], function(err, result) {
+      mysql.pool.query("UPDATE positionGroup SET positionGroup=? WHERE positionGroupID=?", [req.query.positionGroup || curVals.positionGroup, req.query.positionGroupID], function(err, result) {
         if (err) {
           next(err);
           return;
@@ -374,6 +374,43 @@ app.get('/positionGroup-update', getTeams, getPositionGroups, getPositions, getP
     }
   });
 });
+
+//Position Update
+app.get('/positions-update', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
+  var context = {};
+  mysql.pool.query("SELECT * FROM positions WHERE positionID=?", [req.query.positionID], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    if (result.length == 1) {
+      var curVals = result[0];
+      mysql.pool.query("UPDATE positions SET positionGroup=?, position=? WHERE positionGroupID=?", [req.query.positionGroup || curVals.positionGroup, req.query.position||curVals.position, req.query.positionID], function(err, result) {
+        if (err) {
+          next(err);
+          return;
+        }
+        mysql.pool.query('SELECT * FROM positions', function(err, rows, fields) {
+          if (err) {
+            next(err);
+            return;
+          }
+          req.positions= rows;
+          res.render('tables', {
+            teams: req.teams,
+            positionGroup: req.positionGroup,
+            positions: req.positions,
+            players: req.players,
+            offsensiveStats: req.offsensiveStats,
+            defensiveStats: req.defensiveStats,
+            specialTeamsStats: req.specialTeamsStats
+          });
+        });
+      });
+    }
+  });
+});
+
 
 
 //Homepage
