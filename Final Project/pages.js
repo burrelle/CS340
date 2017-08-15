@@ -339,6 +339,42 @@ app.get('/teams-update', getTeams, getPositionGroups, getPositions, getPlayers, 
 });
 
 //TODO UPDATE functions for all of the remaining tables
+//Position Group Update
+app.get('/positionGroup-update', getTeams, getPositionGroup, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
+  var context = {};
+  mysql.pool.query("SELECT * FROM teams WHERE positionGroupID=?", [req.query.positionGroupID], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    if (result.length == 1) {
+      var curVals = result[0];
+      mysql.pool.query("UPDATE teams SET positionGroup=? WHERE positionGroupID=?", [req.query.positionGroup || curVals.positionGroup, req.query.positionGroupID], function(err, result) {
+        if (err) {
+          next(err);
+          return;
+        }
+        mysql.pool.query('SELECT * FROM positionGroup', function(err, rows, fields) {
+          if (err) {
+            next(err);
+            return;
+          }
+          req.positionGroup = rows;
+          res.render('tables', {
+            teams: req.teams,
+            positionGroup: req.positionGroup,
+            positions: req.positions,
+            players: req.players,
+            offsensiveStats: req.offsensiveStats,
+            defensiveStats: req.defensiveStats,
+            specialTeamsStats: req.specialTeamsStats
+          });
+        });
+      });
+    }
+  });
+});
+
 
 //Homepage
 app.get('/', function(req, res) {
