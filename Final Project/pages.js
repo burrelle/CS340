@@ -385,7 +385,7 @@ app.get('/positions-update', getTeams, getPositionGroups, getPositions, getPlaye
     }
     if (result.length == 1) {
       var curVals = result[0];
-      mysql.pool.query("UPDATE positions SET positionGroup=?, position=? WHERE positionGroupID=?", [req.query.positionGroup || curVals.positionGroup, req.query.position||curVals.position, req.query.positionID], function(err, result) {
+      mysql.pool.query("UPDATE positions SET position=? WHERE positionID=?", [req.query.position||curVals.position, req.query.positionID], function(err, result) {
         if (err) {
           next(err);
           return;
@@ -395,7 +395,7 @@ app.get('/positions-update', getTeams, getPositionGroups, getPositions, getPlaye
             next(err);
             return;
           }
-          req.positions= rows;
+          req.positions = rows;
           res.render('tables', {
             teams: req.teams,
             positionGroup: req.positionGroup,
