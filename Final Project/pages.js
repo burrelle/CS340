@@ -340,7 +340,7 @@ app.get('/teams-update', getTeams, getPositionGroups, getPositions, getPlayers, 
 
 //TODO UPDATE functions for all of the remaining tables
 //Position Group Update
-app.get('/positionGroup-update', getTeams, getPositionGroup, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
+app.get('/positionGroup-update', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
   var context = {};
   mysql.pool.query("SELECT * FROM teams WHERE positionGroupID=?", [req.query.positionGroupID], function(err, result) {
     if (err) {

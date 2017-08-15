@@ -3,7 +3,7 @@
     <div class="card-header" role="tab" id="headingOne">
       <h5 class="mb-0">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Teams Table
+          Teams
         </a>
       </h5>
     </div>
@@ -45,7 +45,7 @@
                 <form action="/teams-update" method="get">
                   <fieldset>
                     <legend>
-                      Update Teams
+                      Update Team
                     </legend>
                     <input type="hidden" name="teamID" value= {{this.teamID}} />
                     <div class="form-group">
@@ -79,7 +79,7 @@
     <div class="card-header" role="tab" id="headingTwo">
       <h5 class="mb-0">
         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Position Groups Table
+          Position Groups 
         </a>
       </h5>
     </div>
@@ -101,8 +101,9 @@
               <td>
                 {{this.positionGroup}}
               </td>
-              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{this.positionGroupID}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
-          <div class="collapse" id="{{this.positionGroupID}}">
+              <td>
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#positionGroup{{this.positionGroupID}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
+          <div class="collapse" id="positionGroup{{this.positionGroupID}}">
             <div class="card card-block">
               <form action="/positionGroup-update" method="get">
                 <fieldset>
@@ -112,13 +113,14 @@
                   <input type="hidden" name="positionGroupID" value= {{this.positionGroupID}} />
                   <div class="form-group">
                     <label>City: </label>
-                    <input type="text" name="positionGroup" value= {{this.positionGroup}} />
+                    <input type="text" name="positionGroup" value= "{{this.positionGroup}}" />
                   </div>
                   </div>
                   <button class="btn btn-warning" type="submit" id="positionGroupSubmit" />Submit</button>
                 </fieldset>
               </form>
             </div>
+          </div>
             </td>
               </tr>
             {{/each}}
