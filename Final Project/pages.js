@@ -748,6 +748,33 @@ app.get('/specialTeamsStats-delete', getTeams, getPositionGroups, getPositions, 
   });
 });
 
+app.use('/search', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res) {
+  res.render('search', {
+    teams: req.teams,
+    positionGroup: req.positionGroup,
+    positions: req.positions,
+    players: req.players,
+    offensiveStats: req.offensiveStats,
+    defensiveStats: req.defensiveStats,
+    specialTeamsStats: req.specialTeamsStats
+  });
+});
+
+//Search by Team Page
+app.get('/searchByTeam', getTeams, getPlayers, getPositions, function(req, res, next){
+  mysql.pool.query("SELECT player.pNumber, player.firstName, player.lastName, teams.mascot, positions.position FROM player JOIN positions on player.position = positions.positionID JOIN teams ON player.team = teams.teamID WHERE teams.teamID=?",  [req.query.teamID], function(err, rows, fields){
+    if (err) {
+      next(err);
+      return;
+    }
+    req.players = rows;
+    res.render('search', {
+      players: req.players,
+      teams: req.teams
+    });
+  });
+});
+
 
 //Homepage
 app.get('/', function(req, res) {

@@ -1,0 +1,50 @@
+<form action="/searchByTeam">
+  <select name="teamID">
+{{#each teams}}
+<option value="{{inc @index}}">{{this.mascot}}</option>
+{{/each}}
+</select>
+  <input type="submit" class="btn btn-primary" id="playerByTeamSearch" />
+</form>
+
+<table class="table table-striped" id="positionGroupTable">
+  <thead class="thead-inverse">
+    <tr>
+      <th>
+        Number
+      </th>
+      <th>
+        First Name
+      </th>
+      <th>
+        Last Name
+      </th>
+      <th>
+        Team
+      </th>
+      <th>
+        Postion
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each players}}
+      <td>
+        {{this.pNumber}}
+      </td>
+      <td>
+        {{this.firstName}}
+      </td>
+      <td>
+        {{this.lastName}}
+      </td>
+      <td>
+        {{this.mascot}}
+      </td>
+      <td>
+        {{this.position}}
+      </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
