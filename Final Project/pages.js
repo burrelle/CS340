@@ -68,7 +68,7 @@ function getPlayers(req, res, next) {
 }
 
 function getOffensiveStats(req, res, next) {
-  mysql.pool.query('SELECT * from offensiveStats', function(err, rows, fields) {
+  mysql.pool.query('SELECT * from defensiveStats', function(err, rows, fields) {
     if (err) {
       next(err);
       return;
@@ -470,6 +470,43 @@ app.get('/offensiveStats-update', getTeams, getPositionGroups, getPositions, get
               return;
             }
             req.offensiveStats = rows;
+            res.render('tables', {
+              teams: req.teams,
+              positionGroup: req.positionGroup,
+              positions: req.positions,
+              players: req.players,
+              offensiveStats: req.offensiveStats,
+              defensiveStats: req.defensiveStats,
+              specialTeamsStats: req.specialTeamsStats
+            });
+          });
+        });
+      }
+    });
+  });
+
+//defensiveStats Update
+app.get('/defensiveStats-update', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats,
+  function(req, res, next) {
+    var context = {};
+    mysql.pool.query("SELECT * FROM defensiveStats WHERE defensiveStatsID=?", [req.query.defensiveStatsID], function(err, result) {
+      if (err) {
+        next(err);
+        return;
+      }
+      if (result.length == 1) {
+        var curVals = result[0];
+        mysql.pool.query("UPDATE defensiveStats SET sacks=?, tackles=?, forcedFumbles=?, interceptions=? WHERE defensiveStatsID=?", [req.query.sacks || curVals.sacks, req.query.tackles || curVals.tackles, req.query.forcedFumbles || curVals.forcedFumbles, req.query.interceptions||curVals.interceptions, req.query.defensiveStatsID], function(err, result) {
+          if (err) {
+            next(err);
+            return;
+          }
+          mysql.pool.query('SELECT * FROM defensiveStats', function(err, rows, fields) {
+            if (err) {
+              next(err);
+              return;
+            }
+            req.defensiveStats = rows;
             res.render('tables', {
               teams: req.teams,
               positionGroup: req.positionGroup,

@@ -266,7 +266,7 @@
                       <input type="text" name="lastName" value= "{{this.lastName}}" />
                     </div>
                     </div>
-                    <button class="btn btn-warning" type="submit" id="positionSubmit" />Submit</button>
+                    <button class="btn btn-warning" type="submit" id="playerSubmit" />Submit</button>
                   </fieldset>
                 </form>
               </div>
@@ -397,7 +397,7 @@
                       <input type="number" name="receivingYards" value= {{this.receivingYards}} />
                     </div>
                     </div>
-                    <button class="btn btn-warning" type="submit" id="positionSubmit" />Submit</button>
+                    <button class="btn btn-warning" type="submit" id="offensiveStatsSubmit" />Submit</button>
                   </fieldset>
                 </form>
               </div>
@@ -440,6 +440,9 @@
               <th>
                 Interceptions
               </th>
+              <th>
+                Edit
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -458,6 +461,39 @@
               </td>
               <td>
                 {{this.interceptions}}
+              </td>
+              <td>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#defensiveStats{{this.defensiveStatsID}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
+            <div class="collapse" id="defensiveStats{{this.defensiveStatsID}}">
+              <div class="card card-block">
+                <form action="/defensiveStats-update" method="get">
+                  <fieldset>
+                    <legend>
+                      Update Offensive Stats
+                    </legend>
+                    <input type="hidden" name="defensiveStatsID" value= {{this.defensiveStatsID}} />
+                    <div class="form-group">
+                      <label>Sacks: </label>
+                      <input type="number" name="sacks" value= {{this.sacks}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Tackles: </label>
+                      <input type="number" name="tackles" value= {{this.tackles}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Forced Fumbles: </label>
+                      <input type="number" name="forcedFumbles" value= {{this.forcedFumbles}} />
+                    </div>
+                    <div class="form-group">
+                      <label>Interceptions: </label>
+                      <input type="number" name="interceptions" value= {{this.interceptions}} />
+                    </div>
+                    </div>
+                    <button class="btn btn-warning" type="submit" id="defensiveStatsSubmit" />Submit</button>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
               </td>
               </tr>
             {{/each}}
