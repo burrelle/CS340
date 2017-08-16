@@ -1,165 +1,285 @@
+<div class="jumbotron">
+  <h1 class="display-3">Insert</h1>
+  <p class="lead">CS340 Introduction to Databases. </p>
+  <hr class="my-4">
+  <p>Insert into every table in the database.</p>
+</div>
+
 <!-- Insert a team -->
-<form action="/teams-insert" method="get">
-  <fieldset>
-    <legend>
-      Add a team
-    </legend>
-    <label>City: </label>
-    <input type="text" name="city" required />
-    <label>Mascot: </label>
-    <input type="text" name="mascot" required />
-    <label>Stadium: </label>
-    <input type="text" name="stadium" required />
-    <input type="submit" id="teamSubmit"/>
-  </fieldset>
-</form>
+<span class="border">
+<div class="container">
+  <form action="/teams-insert" method="get">
+    <fieldset class="form-group">
+      <legend>
+        Add a team
+      </legend>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">City: </label>
+        <div class="col-8">
+          <input type="text" name="city" required />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Mascot: </label>
+        <div class="col-8">
+          <input type="text" name="mascot" required />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Stadium: </label>
+        <div class="col-8">
+          <input type="text" name="stadium" required />
+        </div>
+      </div>
+      <input type="submit" class="btn btn-primary" id="teamSubmit" />
+    </fieldset>
+  </form>
+  </span>
+  <!-- Insert a positionGroup -->
 
-<!-- Insert a positionGroup -->
-<form action="/positionGroup-insert" method="get">
-  <fieldset>
-    <legend>
-      Add a Position Group
-    </legend>
-    <label>Position Group: </label>
-    <input type="text" name="positionGroup" />
-    <input type="submit" id="positionGroupSubmit" href="/insert" />
-  </fieldset>
-</form>
+  <form action="/positionGroup-insert" method="get">
+    <fieldset class="form-group">
+      <legend>
+        Add a Position Group
+      </legend>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Position Group: </label>
+        <div class="col-8">
+          <input type="text" name="positionGroup" />
+        </div>
+      </div>
+      <input type="submit" class="btn btn-primary" id="positionGroupSubmit" href="/insert" />
+    </fieldset>
+  </form>
 
-<!-- Insert a position -->
-<form action="/positions-insert" method="get">
-  <fieldset>
-    <legend>
-      Add a position
-    </legend>
-    <label>Position Group</label>
-    <select name = "positionGroup">
+  <!-- Insert a position -->
+
+  <form action="/positions-insert" method="get">
+    <fieldset class="form-group">
+      <legend>
+        Add a position
+      </legend>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Position Group: </label>
+        <div class="col-8">
+          <select name="positionGroup">
       {{#each positionGroup}}
       <option value="{{inc @index}}">{{this.positionGroup}}</option>
       {{/each}}
     </select>
-    <label>Position: </label>
-    <input type="text" name="position" />
-    <input type="submit" id="positionSubmit" />
-  </fieldset>
-</form>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Position: </label>
+        <div class="col-8">
+          <input type="text" name="position" />
+        </div>
+      </div>
+      <input type="submit" class="btn btn-primary" id="positionSubmit" />
+    </fieldset>
+  </form>
 
-<!-- Insert a player -->
-<form action="/player-insert" method="get">
-  <fieldset>
-    <legend>
-    Add a player
-    </legend>
-    <label>Player Number: </label>
-    <input type="number" name="pNumber" />
-    <label>First Name: </label>
-    <input type="text" name ="firstName" />
-    <label>Last Name: </label>
-    <input type="text" name="lastName" />
-    <label>Age: </label>
-    <input type="number" name="age" />
-    <label>Team: </label>
-    <select name ="mascot">
+  <!-- Insert a player -->
+
+  <form action="/player-insert" method="get">
+    <fieldset class="form-group">
+      <legend>
+        Add a player
+      </legend>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Player Number: </label>
+        <div class="col-8">
+          <input type="number" name="pNumber" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">First Name: </label>
+        <div class="col-8">
+          <input type="text" name="firstName" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Last Name: </label>
+        <div class="col-8">
+          <input type="text" name="lastName" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Age: </label>
+        <div class="col-8">
+          <input type="number" name="age" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Team: </label>
+        <div class="col-8">
+          <select name="mascot">
       {{#each teams}}
       <option value="{{inc @index}}">{{this.mascot}}</option>
       {{/each}}
     </select>
-    <label>Position Group</label>
-    <select name="positionGroup">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Position Group: </label>
+        <div class="col-8">
+          <select name="positionGroup">
       {{#each positionGroup}}
       <option value="{{inc @index}}">{{this.positionGroup}}</option>
       {{/each}}
     </select>
-    <select name="position">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Position: </label>
+        <div class="col-8">
+          <select name="position">
       {{#each positions}}
       <option value="{{inc @index}}">{{this.position}}</option>
       {{/each}}
     </select>
-    <input type="submit" id="playerSubmit" />
-  </fieldset>
-</form>
+        </div>
+      </div>
+      <input type="submit" class="btn btn-primary" id="playerSubmit" />
+    </fieldset>
+  </form>
 
-<!-- Insert offensiveStats -->
+  <!-- Insert offensiveStats -->
 
-<form action="/offensiveStats-insert" method="get">
-  <fieldset>
-    <legend>
-      Add Offensive Stats
-    </legend>
-    <select name="playerNumber">
+  <form action="/offensiveStats-insert" method="get">
+    <fieldset class="form-group">
+      <legend>
+        Add Offensive Stats
+      </legend>
+      <div class="form-group row"> <label class="col-2 col-form-label">Player: </label>
+        <div class="col-8">
+          <select name="playerNumber">
       {{#each players}}
       <option value="{{inc @index}}">
         {{this.firstName}} {{this.lastName}}
       </option>
       {{/each}}
     </select>
-    <label>Passing Attempts: </label>
-    <input type="number" name="passingAttempts" />
-    <label>Passes Completed: </label>
-    <input type="number" name="passesCompleted" />
-    <label>Passing Yards: </label>
-    <input type="number" name="passingYards" />
-    <label>Rushing Yards: </label>
-    <input type="number" name="rushingYards" />
-    <label>Rushing Attempts: </label>
-    <input type="number" name="rushingAttempts" />
-    <label>Receptions: </label>
-    <input type="number" name="receptions" />
-    <label>Targets: </label>
-    <input type="number" name="targets" />
-    <label>Receiving Yards </label>
-    <input type="number" name="receivingYards" />
-    <input type="submit" id="offensiveStatsSubmit" />
-  </fieldset>
-</form>
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Passing Attempts: </label>
+        <div class="col-8">
+          <input type="number" name="passingAttempts" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Passes Completed: </label>
+        <div class="col-8">
+          <input type="number" name="passesCompleted" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Passing Yards: </label>
+        <div class="col-8">
+          <input type="number" name="passingYards" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Rushing Yards: </label>
+        <div class="col-8">
+          <input type="number" name="rushingYards" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Rushing Attempts: </label>
+        <div class="col-8">
+          <input type="number" name="rushingAttempts" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Receptions: </label>
+        <div class="col-8">
+          <input type="number" name="receptions" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Targets: </label>
+        <div class="col-8">
+          <input type="number" name="targets" />
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Receiving Yards </label>
+        <div class="col-8">
+          <input type="number" name="receivingYards" />
+        </div>
+      </div>
+      <input type="submit" class="btn btn-primary" id="offensiveStatsSubmit" />
+    </fieldset>
+  </form>
 
-<!-- Insert defensiveStats -->
-<form action="/defensiveStats-insert" method="get">
-  <fieldset>
-    <legend>
-      Add Defensive Stats
-    </legend>
-    <select name="playerNumber">
+  <!-- Insert defensiveStats -->
+
+  <form action="/defensiveStats-insert" method="get">
+    <fieldset class="form-group">
+      <legend>
+        Add Defensive Stats
+      </legend>
+      <div class="form-group row"> <label class="col-2 col-form-label">Player: </label>
+        <div class="col-8">
+          <select name="playerNumber">
       {{#each players}}
       <option value="{{inc @index}}">
         {{this.firstName}} {{this.lastName}}
       </option>
       {{/each}}
     </select>
-    <label>Sacks: </label>
-    <input type="number" name="sacks" />
-    <label>Tackles: </label>
-    <input type="number" name="tackles" />
-    <label>Forced Fumbles: </label>
-    <input type="number" name="forcedFumbles" />
-    <label>Interceptions: </label>
-    <input type="number" name="interceptions" />
-    <input type="submit" id="defensiveStatsSubmit" />
-  </fieldset>
-</form>
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Sacks: </label>
+        <div class="col-8">
+          <input type="number" name="sacks" /></div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Tackles: </label>
+        <div class="col-8">
+          <input type="number" name="tackles" /></div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Forced Fumbles: </label>
+        <div class="col-8">
+          <input type="number" name="forcedFumbles" /></div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Interceptions: </label>
+        <div class="col-8">
+          <input type="number" name="interceptions" /></div>
+      </div>
+      <input type="submit" class="btn btn-primary" id="defensiveStatsSubmit" />
+    </fieldset>
+  </form>
 
-<!-- Insert specialTeamsStats -->
+  <!-- Insert specialTeamsStats -->
 
-<form action="/specialTeamsStats-insert" method="get">
-  <fieldset>
-    <legend>
-      Add Special Teams Stats
-    </legend>
-    <select name="playerNumber">
+  <form action="/specialTeamsStats-insert" method="get">
+    <fieldset class="form-group">
+      <legend>
+        Add Special Teams Stats
+      </legend>
+      <div class="form-group row"> <label class="col-2 col-form-label">Player: </label>
+        <div class="col-8">
+          <select name="playerNumber">
       {{#each players}}
       <option value="{{inc @index}}">
         {{this.firstName}} {{this.lastName}}
       </option>
       {{/each}}
     </select>
-    <label>Field Goal Attempts: </label>
-    <input type="number" name="fieldGoalAttempts" />
-    <label>Field Goals Made: </label>
-    <input type="number" name="fieldGoalMade" />
-    <label>Punts: </label>
-    <input type="number" name="punts" />
-    <label>Average Punt Yards: </label>
-    <input type="number" name="averagePuntYards" />
-    <input type="submit" id="specialTeamsStatsSubmit" />
-  </fieldset>
-</form>
+        </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Field Goal Attempts: </label>
+        <div class="col-8">
+          <input type="number" name="fieldGoalAttempts" /> </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Field Goals Made: </label>
+        <div class="col-8">
+          <input type="number" name="fieldGoalMade" /> </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Punts: </label>
+        <div class="col-8">
+          <input type="number" name="punts" /> </div>
+      </div>
+      <div class="form-group row"> <label class="col-2 col-form-label">Average Punt Yards: </label>
+        <div class="col-8">
+          <input type="number" name="averagePuntYards" />
+        </div>
+      </div>
+      <input type="submit" class="btn btn-primary" id="specialTeamsStatsSubmit" />
+    </fieldset>
+  </form>
+</div>
