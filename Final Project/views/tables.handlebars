@@ -25,6 +25,9 @@
               <th>
                 Edit
               </th>
+              <th>
+                Delete
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -67,6 +70,12 @@
               </div>
             </div>
               </td>
+              <td>
+                <form action="/teams-delete" method="get">
+                <input type="hidden" name="teamID" value= {{this.teamID}} />
+                <button class="btn btn-danger" type="submit" id="deleteButton" />Delete</button>
+                </form>
+              </td>
               </tr>
             {{/each}}
           </tbody>
@@ -93,6 +102,9 @@
               </th>
               <th>
                 Edit
+              </th>
+              <th>
+                Delete
               </th>
             </tr>
           </thead>
@@ -122,6 +134,12 @@
             </div>
           </div>
             </td>
+            <td>
+              <form action="/positionGroup-delete" method="get">
+              <input type="hidden" name="positionGroupID" value= {{this.positionGroupID}} />
+              <button class="btn btn-danger" type="submit" id="deleteButton" />Delete</button>
+              </form>
+            </td>
               </tr>
             {{/each}}
           </tbody>
@@ -148,6 +166,9 @@
               </th>
               <th>
                 Edit
+              </th>
+              <th>
+                Delete
               </th>
             </tr>
           </thead>
@@ -176,6 +197,12 @@
                 </form>
               </div>
             </div>
+              </td>
+              <td>
+                <form action="/positions-delete" method="get">
+                <input type="hidden" name="positionID" value= {{this.positionID}} />
+                <button class="btn btn-danger" type="submit" id="deleteButton" />Delete</button>
+                </form>
               </td>
               </tr>
             {{/each}}
@@ -221,6 +248,9 @@
               </th>
               <th>
                 Edit
+              </th>
+              <th>
+                Delete
               </th>
             </tr>
           </thead>
@@ -272,6 +302,12 @@
               </div>
             </div>
               </td>
+              <td>
+                <form action="/player-delete" method="get">
+                <input type="hidden" name="playerID" value= {{this.playerID}} />
+                <button class="btn btn-danger" type="submit" id="deleteButton" />Delete</button>
+                </form>
+              </td>
               </tr>
             {{/each}}
           </tbody>
@@ -290,7 +326,7 @@
     </div>
     <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFive">
       <div class="card-block">
-        <table class="table table-striped" id="offensiveStatsTable">
+        <table class="table table-striped" id="defensiveStatsTable">
           <thead class="thead-inverse">
             <tr>
               <th>
@@ -322,6 +358,9 @@
               </th>
               <th>
                 Edit
+              </th>
+              <th>
+                Delete
               </th>
             </tr>
           </thead>
@@ -403,6 +442,12 @@
               </div>
             </div>
               </td>
+              <td>
+                <form action="/offensiveStats-delete" method="get">
+                <input type="hidden" name="offensiveStatsID" value= {{this.offensiveStatsID}} />
+                <button class="btn btn-danger" type="submit" id="deleteButton" />Delete</button>
+                </form>
+              </td>
               </tr>
             {{/each}}
           </tbody>
@@ -442,6 +487,9 @@
               </th>
               <th>
                 Edit
+              </th>
+              <th>
+                Delete
               </th>
             </tr>
           </thead>
@@ -495,6 +543,12 @@
               </div>
             </div>
               </td>
+              <td>
+              <form action="/defensiveStats-delete" method="get">
+              <input type="hidden" name="defensiveStatsID" value= {{this.defensiveStatsID}} />
+              <button class="btn btn-danger" type="submit" id="deleteButton" />Delete</button>
+              </form>
+              </td>
               </tr>
             {{/each}}
           </tbody>
@@ -533,6 +587,9 @@
             </th>
             <th>
               Edit
+            </th>
+            <th>
+              Delete
             </th>
           </tr>
         </thead>
@@ -585,6 +642,12 @@
               </form>
             </div>
           </div>
+            </td>
+            <td>
+            <form action="/specialTeamsStats-delete" method="get">
+            <input type="hidden" name="specialTeamsStatsID" value= {{this.specialTeamsStatsID}} />
+            <button class="btn btn-danger" type="submit" id="deleteButton" />Delete</button>
+            </form>
             </td>
             </tr>
           {{/each}}

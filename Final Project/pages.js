@@ -68,7 +68,7 @@ function getPlayers(req, res, next) {
 }
 
 function getOffensiveStats(req, res, next) {
-  mysql.pool.query('SELECT * from defensiveStats', function(err, rows, fields) {
+  mysql.pool.query('SELECT * from offensiveStats', function(err, rows, fields) {
     if (err) {
       next(err);
       return;
@@ -338,7 +338,6 @@ app.get('/teams-update', getTeams, getPositionGroups, getPositions, getPlayers, 
   });
 });
 
-//TODO UPDATE functions for all of the remaining tables
 //Position Group Update
 app.get('/positionGroup-update', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
   var context = {};
@@ -496,7 +495,7 @@ app.get('/defensiveStats-update', getTeams, getPositionGroups, getPositions, get
       }
       if (result.length == 1) {
         var curVals = result[0];
-        mysql.pool.query("UPDATE defensiveStats SET sacks=?, tackles=?, forcedFumbles=?, interceptions=? WHERE defensiveStatsID=?", [req.query.sacks || curVals.sacks, req.query.tackles || curVals.tackles, req.query.forcedFumbles || curVals.forcedFumbles, req.query.interceptions||curVals.interceptions, req.query.defensiveStatsID], function(err, result) {
+        mysql.pool.query("UPDATE defensiveStats SET sacks=?, tackles=?, forcedFumbles=?, interceptions=? WHERE defensiveStatsID=?", [req.query.sacks || curVals.sacks, req.query.tackles || curVals.tackles, req.query.forcedFumbles || curVals.forcedFumbles, req.query.interceptions || curVals.interceptions, req.query.defensiveStatsID], function(err, result) {
           if (err) {
             next(err);
             return;
@@ -533,7 +532,7 @@ app.get('/specialTeamsStats-update', getTeams, getPositionGroups, getPositions, 
       }
       if (result.length == 1) {
         var curVals = result[0];
-        mysql.pool.query("UPDATE specialTeamsStats SET fieldGoalAttempts=?, fieldGoalMade=?, punts=?, averagePuntYards=? WHERE specialTeamsStatsID=?", [req.query.fieldGoalAttempts || curVals.fieldGoalAttempts, req.query.fieldGoalMade || curVals.fieldGoalMade, req.query.punts || curVals.punts, req.query.averagePuntYards||curVals.averagePuntYards, req.query.specialTeamsStatsID], function(err, result) {
+        mysql.pool.query("UPDATE specialTeamsStats SET fieldGoalAttempts=?, fieldGoalMade=?, punts=?, averagePuntYards=? WHERE specialTeamsStatsID=?", [req.query.fieldGoalAttempts || curVals.fieldGoalAttempts, req.query.fieldGoalMade || curVals.fieldGoalMade, req.query.punts || curVals.punts, req.query.averagePuntYards || curVals.averagePuntYards, req.query.specialTeamsStatsID], function(err, result) {
           if (err) {
             next(err);
             return;
@@ -559,6 +558,195 @@ app.get('/specialTeamsStats-update', getTeams, getPositionGroups, getPositions, 
     });
   });
 
+//TODO Delete functions for the table rows
+//Teams Delete
+app.get('/teams-delete', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
+  var context = {};
+  mysql.pool.query("DELETE FROM teams WHERE teamID=?", [req.query.teamID], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    mysql.pool.query('SELECT * FROM teams', function(err, rows, fields) {
+      if (err) {
+        next(err);
+        return;
+      }
+      req.teams = rows;
+      res.render('tables', {
+        teams: req.teams,
+        positionGroup: req.positionGroup,
+        positions: req.positions,
+        players: req.players,
+        offensiveStats: req.offensiveStats,
+        defensiveStats: req.defensiveStats,
+        specialTeamsStats: req.specialTeamsStats
+      });
+    });
+  });
+});
+
+//Position Group Delete
+app.get('/positionGroup-delete', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
+  var context = {};
+  mysql.pool.query("DELETE FROM positionGroup WHERE positionGroupID=?", [req.query.positionGroupID], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    mysql.pool.query('SELECT * FROM positionGroup', function(err, rows, fields) {
+      if (err) {
+        next(err);
+        return;
+      }
+      req.positionGroups = rows;
+      res.render('tables', {
+        teams: req.teams,
+        positionGroup: req.positionGroup,
+        positions: req.positions,
+        players: req.players,
+        offensiveStats: req.offensiveStats,
+        defensiveStats: req.defensiveStats,
+        specialTeamsStats: req.specialTeamsStats
+      });
+    });
+  });
+});
+
+//Position Delete
+app.get('/positions-delete', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
+  var context = {};
+  mysql.pool.query("DELETE FROM positions WHERE positionID=?", [req.query.positionID], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    mysql.pool.query('SELECT * FROM positions', function(err, rows, fields) {
+      if (err) {
+        next(err);
+        return;
+      }
+      req.positions = rows;
+      res.render('tables', {
+        teams: req.teams,
+        positionGroup: req.positionGroup,
+        positions: req.positions,
+        players: req.players,
+        offensiveStats: req.offensiveStats,
+        defensiveStats: req.defensiveStats,
+        specialTeamsStats: req.specialTeamsStats
+      });
+    });
+  });
+});
+
+//Player Delete
+app.get('/player-delete', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
+  var context = {};
+  mysql.pool.query("DELETE FROM player WHERE playerID=?", [req.query.playerID], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    mysql.pool.query('SELECT * FROM player', function(err, rows, fields) {
+      if (err) {
+        next(err);
+        return;
+      }
+      req.players = rows;
+      res.render('tables', {
+        teams: req.teams,
+        positionGroup: req.positionGroup,
+        positions: req.positions,
+        players: req.players,
+        offensiveStats: req.offensiveStats,
+        defensiveStats: req.defensiveStats,
+        specialTeamsStats: req.specialTeamsStats
+      });
+    });
+  });
+});
+
+//offensiveStats Delete
+app.get('/offensiveStats-delete', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
+  var context = {};
+  mysql.pool.query("DELETE FROM offensiveStats WHERE offensiveStatsID=?", [req.query.offensiveStatsID], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    mysql.pool.query('SELECT * FROM offensiveStats', function(err, rows, fields) {
+      if (err) {
+        next(err);
+        return;
+      }
+      req.offensiveStats = rows;
+      res.render('tables', {
+        teams: req.teams,
+        positionGroup: req.positionGroup,
+        positions: req.positions,
+        players: req.players,
+        offensiveStats: req.offensiveStats,
+        defensiveStats: req.defensiveStats,
+        specialTeamsStats: req.specialTeamsStats
+      });
+    });
+  });
+});
+
+//defensiveStats Delete
+app.get('/defensiveStats-delete', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
+  var context = {};
+  mysql.pool.query("DELETE FROM defensiveStats WHERE defensiveStatsID=?", [req.query.defensiveStatsID], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    mysql.pool.query('SELECT * FROM defensiveStats', function(err, rows, fields) {
+      if (err) {
+        next(err);
+        return;
+      }
+      req.defensiveStats = rows;
+      res.render('tables', {
+        teams: req.teams,
+        positionGroup: req.positionGroup,
+        positions: req.positions,
+        players: req.players,
+        offensiveStats: req.offensiveStats,
+        defensiveStats: req.defensiveStats,
+        specialTeamsStats: req.specialTeamsStats
+      });
+    });
+  });
+});
+
+//specialTeamsStats Delete
+app.get('/specialTeamsStats-delete', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res, next) {
+  var context = {};
+  mysql.pool.query("DELETE FROM specialTeamsStats WHERE specialTeamsStatsID=?", [req.query.specialTeamsStatsID], function(err, result) {
+    if (err) {
+      next(err);
+      return;
+    }
+    mysql.pool.query('SELECT * FROM specialTeamsStats', function(err, rows, fields) {
+      if (err) {
+        next(err);
+        return;
+      }
+      req.specialTeamsStats = rows;
+      res.render('tables', {
+        teams: req.teams,
+        positionGroup: req.positionGroup,
+        positions: req.positions,
+        players: req.players,
+        offensiveStats: req.offensiveStats,
+        defensiveStats: req.defensiveStats,
+        specialTeamsStats: req.specialTeamsStats
+      });
+    });
+  });
+});
 
 
 //Homepage
