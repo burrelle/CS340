@@ -73,7 +73,7 @@ CREATE TABLE specialTeamsStats (
   fieldGoalAttempts int(11),
   fieldGoalMade int(11),
   punts int(11),
-  avergePuntYards int(11)
+  averagePuntYards int(11)
 );
 
 -- File that adds the teams using the correct SQL Syntax
@@ -242,8 +242,8 @@ INSERT INTO `offensiveStats`(`playerNumber`, `passingAttempts`, `passesCompleted
 ((SELECT playerID FROM player WHERE firstName = 'AJ' AND lastName = 'Green'), '0', '0', '0', '0', '0', '66', '100', '964');
 
 -- Table for the stats for the specialTeams players
--- INSERT INTO `specialTeamsStats`(`playerNumber`, `fieldGoalAttempts`, `fieldGoalMade`, `punts`, `avergePuntYards`)
-INSERT INTO `specialTeamsStats`(`playerNumber`, `fieldGoalAttempts`, `fieldGoalMade`, `punts`, `avergePuntYards`) VALUES
+-- INSERT INTO `specialTeamsStats`(`playerNumber`, `fieldGoalAttempts`, `fieldGoalMade`, `punts`, `averagePuntYards`)
+INSERT INTO `specialTeamsStats`(`playerNumber`, `fieldGoalAttempts`, `fieldGoalMade`, `punts`, `averagePuntYards`) VALUES
 ((SELECT playerID FROM player WHERE firstName = 'Matt' OR lastName = 'Bryant'), '37','34','0','0'),
 ((SELECT playerID FROM player WHERE firstName = 'Stephen' OR lastName = 'Gostkowski'), '32','27','0','0'),
 ((SELECT playerID FROM player WHERE firstName = 'Will' OR lastName = 'Lutz'), '34','28','0','0'),

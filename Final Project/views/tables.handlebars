@@ -469,7 +469,7 @@
                 <form action="/defensiveStats-update" method="get">
                   <fieldset>
                     <legend>
-                      Update Offensive Stats
+                      Update Defensive Stats
                     </legend>
                     <input type="hidden" name="defensiveStatsID" value= {{this.defensiveStatsID}} />
                     <div class="form-group">
@@ -531,6 +531,9 @@
             <th>
               Average Punt Yards
             </th>
+            <th>
+              Edit
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -548,7 +551,40 @@
               {{this.punts}}
             </td>
             <td>
-              {{this.avergePuntYards}}
+              {{this.averagePuntYards}}
+            </td>
+            <td>
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#specialTeamsStats{{this.specialTeamsStatsID}}" aria-expanded="false" aria-controls="collapseExample">Edit</button>
+          <div class="collapse" id="specialTeamsStats{{this.specialTeamsStatsID}}">
+            <div class="card card-block">
+              <form action="/specialTeamsStats-update" method="get">
+                <fieldset>
+                  <legend>
+                    Update Special Teams Stats
+                  </legend>
+                  <input type="hidden" name="specialTeamsStatsID" value= {{this.specialTeamsStatsID}} />
+                  <div class="form-group">
+                    <label>Field Goals Made: </label>
+                    <input type="number" name="fieldGoalMade" value= {{this.fieldGoalMade}} />
+                  </div>
+                  <div class="form-group">
+                    <label>Field Goal Attempts: </label>
+                    <input type="number" name="tackles" value= {{this.fieldGoalAttempts}} />
+                  </div>
+                  <div class="form-group">
+                    <label>Punts: </label>
+                    <input type="number" name="punts" value= {{this.punts}} />
+                  </div>
+                  <div class="form-group">
+                    <label>Average PuntYards: </label>
+                    <input type="number" name="interceptions" value= {{this.averagePuntYards}} />
+                  </div>
+                  </div>
+                  <button class="btn btn-warning" type="submit" id="specialTeamsStatsSubmit" />Submit</button>
+                </fieldset>
+              </form>
+            </div>
+          </div>
             </td>
             </tr>
           {{/each}}

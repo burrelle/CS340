@@ -278,7 +278,7 @@ app.get('/defensiveStats-insert', getTeams, getPositionGroups, getPositions, get
 });
 
 app.get('/specialTeamsStats-insert', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, function(req, res, next) {
-  mysql.pool.query('INSERT INTO `specialTeamsStats`(`playerNumber`, `fieldGoalAttempts`, `fieldGoalMade`,`punts`,`avergePuntYards`) VALUES (?,?,?,?,?)', [req.query.playerNumber, req.query.fieldGoalAttempts, req.query.fieldGoalMade, req.query.punts, req.query.avergePuntYards], function(err, result) {
+  mysql.pool.query('INSERT INTO `specialTeamsStats`(`playerNumber`, `fieldGoalAttempts`, `fieldGoalMade`,`punts`,`averagePuntYards`) VALUES (?,?,?,?,?)', [req.query.playerNumber, req.query.fieldGoalAttempts, req.query.fieldGoalMade, req.query.punts, req.query.averagePuntYards], function(err, result) {
     if (err) {
       next(err);
       return;
@@ -522,6 +522,42 @@ app.get('/defensiveStats-update', getTeams, getPositionGroups, getPositions, get
     });
   });
 
+//specialTeamsStats Update
+app.get('/specialTeamsStats-update', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats,
+  function(req, res, next) {
+    var context = {};
+    mysql.pool.query("SELECT * FROM specialTeamsStats WHERE specialTeamsStatsID=?", [req.query.specialTeamsStatsID], function(err, result) {
+      if (err) {
+        next(err);
+        return;
+      }
+      if (result.length == 1) {
+        var curVals = result[0];
+        mysql.pool.query("UPDATE specialTeamsStats SET fieldGoalAttempts=?, fieldGoalMade=?, punts=?, averagePuntYards=? WHERE specialTeamsStatsID=?", [req.query.fieldGoalAttempts || curVals.fieldGoalAttempts, req.query.fieldGoalMade || curVals.fieldGoalMade, req.query.punts || curVals.punts, req.query.averagePuntYards||curVals.averagePuntYards, req.query.specialTeamsStatsID], function(err, result) {
+          if (err) {
+            next(err);
+            return;
+          }
+          mysql.pool.query('SELECT * FROM specialTeamsStats', function(err, rows, fields) {
+            if (err) {
+              next(err);
+              return;
+            }
+            req.specialTeamsStats = rows;
+            res.render('tables', {
+              teams: req.teams,
+              positionGroup: req.positionGroup,
+              positions: req.positions,
+              players: req.players,
+              offensiveStats: req.offensiveStats,
+              defensiveStats: req.defensiveStats,
+              specialTeamsStats: req.specialTeamsStats
+            });
+          });
+        });
+      }
+    });
+  });
 
 
 
