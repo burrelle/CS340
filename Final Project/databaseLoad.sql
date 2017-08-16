@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS `player`;
 DROP TABLE IF EXISTS `teams`;
 DROP TABLE IF EXISTS `positionGroup`;
 DROP TABLE IF EXISTS `positions`;
-DROP TABLE IF EXISTS `offsensiveStats`;
+DROP TABLE IF EXISTS `offensiveStats`;
 DROP TABLE IF EXISTS `defensiveStats`;
 DROP TABLE IF EXISTS `specialTeamsStats`;
 
@@ -43,8 +43,8 @@ CREATE TABLE positions (
 );
 
 -- Create a table for the different offensive stats.
-CREATE TABLE offsensiveStats (
-  offsensiveStatsID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+CREATE TABLE offensiveStats (
+  offensiveStatsID int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   playerNumber int(11) references player(playerID),
   passingAttempts int(11),
   passesCompleted int(11),
@@ -217,8 +217,8 @@ INSERT INTO `defensiveStats`(`playerNumber`, `sacks`, `tackles`, `forcedFumbles`
 ((SELECT playerID FROM player WHERE firstName = 'Calais' AND lastName = 'Campbell'), '8','34','2','1');
 
 -- Add offensive stats for the players that are on offense.
--- INSERT INTO `offsensiveStats`( `passingAttempts`, `passesCompleted`, `passingYards`, `rushingYards`, `rushingAttempts`, `receptions`, `targets`, `receivingYards`) VALUES
-INSERT INTO `offsensiveStats`(`playerNumber`, `passingAttempts`, `passesCompleted`, `passingYards`, `rushingYards`, `rushingAttempts`, `receptions`, `targets`, `receivingYards`) VALUES
+-- INSERT INTO `offensiveStats`( `passingAttempts`, `passesCompleted`, `passingYards`, `rushingYards`, `rushingAttempts`, `receptions`, `targets`, `receivingYards`) VALUES
+INSERT INTO `offensiveStats`(`playerNumber`, `passingAttempts`, `passesCompleted`, `passingYards`, `rushingYards`, `rushingAttempts`, `receptions`, `targets`, `receivingYards`) VALUES
 ((SELECT playerID FROM player WHERE firstName = 'Tyrod' AND lastName = 'Taylor'), '436', '269', '3023', '580', '95', '0', '0', '0'),
 ((SELECT playerID FROM player WHERE firstName = 'Aaron' AND lastName = 'Rodgers'), '610', '401', '4428', '369', '67', '0', '0', '0'),
 ((SELECT playerID FROM player WHERE firstName = 'Jameis' AND lastName = 'Winston'), '567', '345', '4090', '165', '53', '0', '0', '0'),
