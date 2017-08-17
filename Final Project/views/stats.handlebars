@@ -1,3 +1,19 @@
+<div class="jumbotron">
+  <h1 class="display-3">Statistics and Rankings</h1>
+  <hr class="my-4">
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group" role="group" aria-label="First group">
+    <a class="btn btn-outline-primary" href="#quarterbackStatsTable" role="button">Quarterback Stats</a>
+    <a class="btn btn-outline-primary" href="#rushingStatsTable" role="button">Rushing Stats</a>
+    <a class="btn btn-outline-primary" href="#receivingStatsTable" role="button">Receiving Stats</a>
+    <a class="btn btn-outline-primary" href="#tacklesStatsTable" role="button">Defensive Stats</a>
+    <a class="btn btn-outline-primary" href="#kickingStatsTable" role="button">Kicking Stats</a>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="container-fluid">
 <table class="table table-striped" id="quarterbackStatsTable">
   <thead class="thead-inverse">
     <tr>
@@ -86,7 +102,7 @@
   </tbody>
 </table>
 
-<table class="table table-striped" id="quarterbackStatsTable">
+<table class="table table-striped" id="receivingStatsTable">
   <thead class="thead-inverse">
     <tr>
       <th>
@@ -132,3 +148,98 @@
     {{/each}}
   </tbody>
 </table>
+
+<table class="table table-striped" id="tacklesStatsTable">
+  <thead class="thead-inverse">
+    <tr>
+      <th>
+        First Name
+      </th>
+      <th>
+        Last Name
+      </th>
+      <th>
+        Team
+      </th>
+      <th>
+        Tackles
+      </th>
+      <th>
+        Sacks
+      </th>
+      <th>
+        Forced Fumbles
+      </th>
+      <th>
+        Interceptions
+      </th>
+    </thead>
+    <tbody>
+      {{#each tackles}}
+        <td>
+          {{this.firstName}}
+        </td>
+        <td>
+          {{this.lastName}}
+        </td>
+        <td>
+          {{this.mascot}}
+        </td>
+        <td>
+          {{this.tackles}}
+        </td>
+        <td>
+          {{this.sacks}}
+        </td>
+        <td>
+          {{this.forcedFumbles}}
+        </td>
+        <td>
+          {{this.interceptions}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<table class="table table-striped" id="kickingStatsTable">
+  <thead class="thead-inverse">
+    <tr>
+      <th>
+        First Name
+      </th>
+      <th>
+        Last Name
+      </th>
+      <th>
+        Team
+      </th>
+      <th>
+        Field Goals Made
+      </th>
+      <th>
+        Field Goals Attempted
+      </th>
+    </thead>
+    <tbody>
+      {{#each kicking}}
+        <td>
+          {{this.firstName}}
+        </td>
+        <td>
+          {{this.lastName}}
+        </td>
+        <td>
+          {{this.mascot}}
+        </td>
+        <td>
+          {{this.fieldGoalMade}}
+        </td>
+        <td>
+          {{this.fieldGoalAttempts}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>

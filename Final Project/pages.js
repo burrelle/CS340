@@ -805,7 +805,7 @@ app.get('/searchByPositionGroup', getTeams, getPlayers, getPositions, getPositio
   });
 });
 
-app.get('/stats', getQuarterbackStats, getRushingStats, getReceiverStats, renderStatsPage)
+app.get('/stats', getQuarterbackStats, getRushingStats, getReceiverStats, getTackleStats, getKickingStats, renderStatsPage)
 
 function getQuarterbackStats(req, res, next) {
   mysql.pool.query('SELECT player.firstName, player.lastName, teams.mascot, offensiveStats.passingYards, offensiveStats.passingAttempts, offensiveStats.passesCompleted FROM player JOIN positions on player.position = positions.positionID JOIN teams ON player.team = teams.teamID JOIN offensiveStats ON player.playerID = offensiveStats.playerNumber WHERE positions.positionID = 1 ORDER BY offensiveStats.passingYards DESC', function(err, rows, fields) {
@@ -840,15 +840,41 @@ function getReceiverStats(req,res,next){
   })
 }
 
+function getTackleStats(req,res,next){
+  mysql.pool.query('SELECT player.firstName, player.lastName, teams.mascot, defensiveStats.tackles, defensiveStats.sacks, defensiveStats.forcedFumbles, defensiveStats.interceptions FROM player JOIN positions on player.position = positions.positionID JOIN teams ON player.team = teams.teamID JOIN defensiveStats ON player.playerID = defensiveStats.playerNumber ORDER BY defensiveStats.tackles DESC', function(err, rows, fields) {
+    if (err) {
+      next(err);
+      return;
+    }
+    req.tackles = rows
+    return next();
+  })
+}
+
+function getKickingStats(req,res,next){
+  mysql.pool.query('SELECT player.firstName, player.lastName, teams.mascot, specialTeamsStats.fieldGoalMade, specialTeamsStats.fieldGoalAttempts FROM player JOIN positions on player.position = positions.positionID JOIN teams ON player.team = teams.teamID JOIN specialTeamsStats ON player.playerID = specialTeamsStats.playerNumber WHERE player.position = 7 ORDER BY `specialTeamsStats`.`fieldGoalMade` DESC', function(err, rows, fields) {
+    if (err) {
+      next(err);
+      return;
+    }
+    req.kicking = rows
+    return next();
+  })
+}
+
+
 
 
 function renderStatsPage(req, res) {
   res.render('stats', {
     quarterbackStats: req.quarterbackStats,
     rushingStats: req.rushingStats,
-    receivingStats: req.receivingStats
+    receivingStats: req.receivingStats,
+    tackles: req.tackles,
+    kicking: req.kicking
   });
 }
+
 
 
 //Homepage
