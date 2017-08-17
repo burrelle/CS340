@@ -1,3 +1,7 @@
+<div class="jumbotron">
+  <h1 class="display-3">Search</h1>
+  <hr class="my-4">
+  <p>Search by Team</p>
 <form action="/searchByTeam">
   <select name="teamID">
 {{#each teams}}
@@ -6,6 +10,16 @@
 </select>
   <input type="submit" class="btn btn-primary" id="playerByTeamSearch" />
 </form>
+  <p>Search by Position</p>
+<form action="/searchByPosition">
+  <select name="positionID">
+{{#each positions}}
+<option value="{{inc @index}}">{{this.position}}</option>
+{{/each}}
+</select>
+  <input type="submit" class="btn btn-primary" id="playerByPositionSearch" />
+</form>
+</div>
 
 <table class="table table-striped" id="positionGroupTable">
   <thead class="thead-inverse">

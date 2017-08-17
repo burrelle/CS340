@@ -748,15 +748,10 @@ app.get('/specialTeamsStats-delete', getTeams, getPositionGroups, getPositions, 
   });
 });
 
-app.use('/search', getTeams, getPositionGroups, getPositions, getPlayers, getOffensiveStats, getDefensiveStats, getSpecialTeamsStats, function(req, res) {
+app.use('/search', getTeams, getPositions, function(req, res) {
   res.render('search', {
     teams: req.teams,
-    positionGroup: req.positionGroup,
-    positions: req.positions,
-    players: req.players,
-    offensiveStats: req.offensiveStats,
-    defensiveStats: req.defensiveStats,
-    specialTeamsStats: req.specialTeamsStats
+    positions: req.positions
   });
 });
 
@@ -770,10 +765,28 @@ app.get('/searchByTeam', getTeams, getPlayers, getPositions, function(req, res, 
     req.players = rows;
     res.render('search', {
       players: req.players,
-      teams: req.teams
+      teams: req.teams,
+      positions: req.positions
     });
   });
 });
+
+app.get('/searchByPosition', getTeams, getPlayers, getPositions, function(req, res, next){
+  mysql.pool.query("SELECT player.pNumber, player.firstName, player.lastName, teams.mascot, positions.position FROM player JOIN positions on player.position = positions.positionID JOIN teams ON player.team = teams.teamID WHERE positions.positionID=?",  [req.query.positionID], function(err, rows, fields){
+    if (err) {
+      next(err);
+      return;
+    }
+    req.players = rows;
+    res.render('search', {
+      players: req.players,
+      teams: req.teams,
+      positions: req.positions
+    });
+  });
+});
+
+//TODO Sort by position group
 
 
 //Homepage
