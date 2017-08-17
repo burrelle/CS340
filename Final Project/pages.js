@@ -805,18 +805,24 @@ app.get('/searchByPositionGroup', getTeams, getPlayers, getPositions, getPositio
   });
 });
 
-app.get('/stats', function(req, res, next) {
-  mysql.pool.query("SELECT player.firstName, player.lastName, teams.mascot, offensiveStats.passingYards, offensiveStats.passingAttempts, offensiveStats.passesCompleted FROM player JOIN positions on player.position = positions.positionID JOIN teams ON player.team = teams.teamID JOIN offensiveStats ON player.playerID = offensiveStats.playerNumber WHERE positions.positionID = 1 ORDER BY offensiveStats.passingYards DESC", function(err, rows, fields) {
+app.get('/stats', getQuarterbackStats, renderStatsPage)
+
+function getQuarterbackStats(req, res, next) {
+  mysql.pool.query('SELECT player.firstName, player.lastName, teams.mascot, offensiveStats.passingYards, offensiveStats.passingAttempts, offensiveStats.passesCompleted FROM player JOIN positions on player.position = positions.positionID JOIN teams ON player.team = teams.teamID JOIN offensiveStats ON player.playerID = offensiveStats.playerNumber WHERE positions.positionID = 1 ORDER BY offensiveStats.passingYards DESC', function(err, rows, fields) {
     if (err) {
       next(err);
       return;
     }
-    req.quarterbackStats = rows;
-    res.render('stats', {
-      quarterbackStats: req.quarterbackStats
-    });
+    req.quarterbackStats = rows
+    return next();
+  })
+}
+
+function renderStatsPage(req, res) {
+  res.render('stats', {
+    quarterbackStats: req.quarterbackStats
   });
-});
+}
 
 
 //Homepage
