@@ -805,7 +805,7 @@ app.get('/searchByPositionGroup', getTeams, getPlayers, getPositions, getPositio
   });
 });
 
-app.get('/stats', getQuarterbackStats, renderStatsPage)
+app.get('/stats', getQuarterbackStats, getRushingStats, getReceiverStats, renderStatsPage)
 
 function getQuarterbackStats(req, res, next) {
   mysql.pool.query('SELECT player.firstName, player.lastName, teams.mascot, offensiveStats.passingYards, offensiveStats.passingAttempts, offensiveStats.passesCompleted FROM player JOIN positions on player.position = positions.positionID JOIN teams ON player.team = teams.teamID JOIN offensiveStats ON player.playerID = offensiveStats.playerNumber WHERE positions.positionID = 1 ORDER BY offensiveStats.passingYards DESC', function(err, rows, fields) {
@@ -818,9 +818,35 @@ function getQuarterbackStats(req, res, next) {
   })
 }
 
+function getRushingStats(req,res,next){
+  mysql.pool.query('SELECT player.firstName, player.lastName, teams.mascot, offensiveStats.rushingYards, offensiveStats.rushingAttempts FROM player JOIN positions on player.position = positions.positionID JOIN teams ON player.team = teams.teamID JOIN offensiveStats ON player.playerID = offensiveStats.playerNumber WHERE positions.positionID = 2 ORDER BY offensiveStats.rushingYards DESC', function(err, rows, fields) {
+    if (err) {
+      next(err);
+      return;
+    }
+    req.rushingStats = rows
+    return next();
+  })
+}
+
+function getReceiverStats(req,res,next){
+  mysql.pool.query('SELECT player.firstName, player.lastName, teams.mascot, offensiveStats.receivingYards, offensiveStats.receptions, offensiveStats.targets FROM player JOIN positions on player.position = positions.positionID JOIN teams ON player.team = teams.teamID JOIN offensiveStats ON player.playerID = offensiveStats.playerNumber WHERE positions.positionID = 3 ORDER BY offensiveStats.receivingYards DESC', function(err, rows, fields) {
+    if (err) {
+      next(err);
+      return;
+    }
+    req.receivingStats = rows
+    return next();
+  })
+}
+
+
+
 function renderStatsPage(req, res) {
   res.render('stats', {
-    quarterbackStats: req.quarterbackStats
+    quarterbackStats: req.quarterbackStats,
+    rushingStats: req.rushingStats,
+    receivingStats: req.receivingStats
   });
 }
 

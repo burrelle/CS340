@@ -44,3 +44,91 @@
     {{/each}}
   </tbody>
 </table>
+
+<table class="table table-striped" id="rushingStatsTable">
+  <thead class="thead-inverse">
+    <tr>
+      <th>
+        First Name
+      </th>
+      <th>
+        Last Name
+      </th>
+      <th>
+        Team
+      </th>
+      <th>
+        Rushing Yards
+      </th>
+      <th>
+        Rushing Attempts
+      </th>
+    </thead>
+    <tbody>
+      {{#each rushingStats}}
+        <td>
+          {{this.firstName}}
+        </td>
+        <td>
+          {{this.lastName}}
+        </td>
+        <td>
+          {{this.mascot}}
+        </td>
+        <td>
+          {{this.rushingYards}}
+        </td>
+        <td>
+          {{this.rushingAttempts}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<table class="table table-striped" id="quarterbackStatsTable">
+  <thead class="thead-inverse">
+    <tr>
+      <th>
+        First Name
+      </th>
+      <th>
+        Last Name
+      </th>
+      <th>
+        Team
+      </th>
+      <th>
+        Receiving Yards
+      </th>
+      <th>
+        Receptions
+      </th>
+      <th>
+        Targets
+      </th>
+    </thead>
+    <tbody>
+      {{#each receivingStats}}
+        <td>
+          {{this.firstName}}
+        </td>
+        <td>
+          {{this.lastName}}
+        </td>
+        <td>
+          {{this.mascot}}
+        </td>
+        <td>
+          {{this.receivingYards}}
+        </td>
+        <td>
+          {{this.receptions}}
+        </td>
+        <td>
+          {{this.targets}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
