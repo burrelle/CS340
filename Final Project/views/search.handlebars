@@ -19,6 +19,16 @@
 </select>
   <input type="submit" class="btn btn-primary" id="playerByPositionSearch" />
 </form>
+</form>
+  <p>Search by Position Group</p>
+<form action="/searchByPositionGroup">
+  <select name="positionGroupID">
+{{#each positionGroup}}
+<option value="{{inc @index}}">{{this.positionGroup}}</option>
+{{/each}}
+</select>
+  <input type="submit" class="btn btn-primary" id="playerByPositionGroupSearch" />
+</form>
 </div>
 
 <table class="table table-striped" id="positionGroupTable">
